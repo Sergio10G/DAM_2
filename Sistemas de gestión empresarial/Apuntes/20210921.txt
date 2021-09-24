@@ -1,0 +1,39 @@
+21/09/2021      -       Sistemas de gestión empresarial
+
+4 P's del marketing
+	- Product
+	- Placement
+	- Price
+	- Promotion
+
+Estos 4 aspectos pueden ser controlados facilmente gracias a los Sistemas
+de Gestión Empresarial, que son:
+	- ERP	->	Enterprise Resource Planning
+	- CRM	->	Customer Relationship Manager
+		->	CRM Operativo:
+			Es el CRM general, que se encarga de las relaciones con los
+			clientes. Automatiza procesos para ofrecer una experiencia más
+			cercana de interaccioón entre clientes y empresas.
+		-> CRM Colaborativo:
+			Se encarga de monitorizar todos los canales de comunicación.
+		->	CRM analítico:
+			Se encarga de analizar la información de los clientes y de los 
+			leads, y nos ayuda a generar tendencias.
+	- WMS	->	Warehouse Management System
+	- DMS	->	Document Management System
+	- BPM	->	Business Process Management
+	- B.I.	->	Business Intelligence
+
+En marketing, la conversión es una venta. Un lead es un formulario generado.
+
+Las formas de promocionar nuestra web, pagadas, son:
+	- Retargeting		-> Dirección de publicidad a perfiles concretos
+	- SEM				-> Search Engine Marketing
+	- SEO				-> Search Engine Optimization
+	- Social ads		-> Anuncios en redes sociales
+	- Email marketing	-> Anuncios por email
+	- Link building		-> 
+
+Google analytics: Herramienta que monitoriza todos los aspectos de mi web.
+Con google tag manager introduzco un pixel en los botones de mi página, y se
+registran los clicks en google analytics.
