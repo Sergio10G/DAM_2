@@ -29,8 +29,8 @@ public class User {
 	//	Methods
 	@Override
 	public String toString() {
-		return "User [address=" + address + ", desde=" + desde + ", dni=" + dni + ", email=" + email + ", nombre="
-				+ nombre + "]";
+		return "User [address=" + address + ", desde=" + desde + ", dni=" + dni + ", email=" +
+		email + ", nombre=" + nombre + "]";
 	}
 
 	//	Getters and Setters
