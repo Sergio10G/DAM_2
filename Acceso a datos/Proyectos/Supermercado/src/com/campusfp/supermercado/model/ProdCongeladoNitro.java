@@ -17,7 +17,7 @@ public class ProdCongeladoNitro extends ProdCongelado {
 	
 	//	Methods
 	public String toString() {
-		return "ProdCongeladoNitro [num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad()
+		return "ProdCongeladoNitro [nombre=" + this.getNombre() + ", num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad()
 			+ "fecha_envasado=" + this.getFecha_envasado() + ", pais_origen=" + this.getPais_origen() 
 			+ ", temperatura_mantenimiento=" + this.getTemperatura_mantenimiento() + "metodo_congelacion="
 			+ metodo_congelacion + ", segundos_exp=" + segundos_exp + "]";

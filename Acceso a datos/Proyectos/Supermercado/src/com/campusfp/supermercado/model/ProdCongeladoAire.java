@@ -20,7 +20,7 @@ public class ProdCongeladoAire extends ProdCongelado {
 	//	Methods
 	@Override
 	public String toString() {
-		return "ProdCongeladoAire [num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad()
+		return "ProdCongeladoAire [nombre=" + this.getNombre() + ", num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad()
 		+ "fecha_envasado=" + this.getFecha_envasado() + ", pais_origen=" + this.getPais_origen() 
 		+ ", temperatura_mantenimiento=" + this.getTemperatura_mantenimiento() + ", pcCO2=" + pcCO2
 		+ ", pcH2O=" + pcH2O + ", pcO2=" + pcO2 + "]";

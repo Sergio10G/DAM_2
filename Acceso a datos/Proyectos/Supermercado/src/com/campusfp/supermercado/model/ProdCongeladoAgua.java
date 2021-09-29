@@ -14,7 +14,7 @@ public class ProdCongeladoAgua extends ProdCongelado {
 	
 	//	Methods
 	public String toString() {
-		return "ProdCongeladoAgua [num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad() + 
+		return "ProdCongeladoAgua [nombre=" + this.getNombre() + ", num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad() + 
 			"fecha_envasado=" + this.getFecha_envasado() + ", pais_origen=" + this.getPais_origen() 
 			+ ", temperatura_mantenimiento=" + this.getTemperatura_mantenimiento() + ", salinidad=" + salinidad + "]";
 	}
