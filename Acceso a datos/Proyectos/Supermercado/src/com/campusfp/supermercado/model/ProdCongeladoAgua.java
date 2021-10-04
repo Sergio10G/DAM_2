@@ -7,9 +7,10 @@ public class ProdCongeladoAgua extends ProdCongelado {
 	private float salinidad;
 	
 	//	Constructors
-	public ProdCongeladoAgua(Date fecha_caducidad, String num_lote, Date fecha_envasado,
-			float temperatura_mantenimiento, String pais_origen) {
-		super(fecha_caducidad, num_lote, fecha_envasado, temperatura_mantenimiento, pais_origen);
+	public ProdCongeladoAgua(Date fecha_caducidad, String num_lote, String nombre, Date fecha_envasado,
+			String pais_origen, float temperatura_mantenimiento, float salinidad) {
+		super(fecha_caducidad, num_lote, nombre, fecha_envasado, pais_origen, temperatura_mantenimiento);
+		this.salinidad = salinidad;
 	}
 	
 	//	Methods

@@ -8,9 +8,8 @@ public abstract class ProdFrio extends Producto {
 	private String pais_origen;
 	
 	//	Constructors
-	public ProdFrio(Date fecha_caducidad, String num_lote, Date fecha_envasado,
-			String pais_origen) {
-		super(fecha_caducidad, num_lote);
+	public ProdFrio(Date fecha_caducidad, String num_lote, String nombre, Date fecha_envasado, String pais_origen) {
+		super(fecha_caducidad, num_lote, nombre);
 		this.fecha_envasado = fecha_envasado;
 		this.pais_origen = pais_origen;
 	}
@@ -22,7 +21,7 @@ public abstract class ProdFrio extends Producto {
 	public Date getFecha_envasado() {
 		return fecha_envasado;
 	}
-
+	
 	public void setFecha_envasado(Date fecha_envasado) {
 		this.fecha_envasado = fecha_envasado;
 	}

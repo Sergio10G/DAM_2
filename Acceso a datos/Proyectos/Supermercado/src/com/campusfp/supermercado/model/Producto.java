@@ -9,9 +9,10 @@ public abstract class Producto {
 	private String nombre;
 	
 	//	Constructors
-	public Producto(Date fecha_caducidad, String num_lote) {
+	public Producto(Date fecha_caducidad, String num_lote, String nombre) {
 		this.fecha_caducidad = fecha_caducidad;
 		this.num_lote = num_lote;
+		this.nombre = nombre;
 	}
 	
 	//	Methods

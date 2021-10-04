@@ -6,12 +6,11 @@ public class ProdRefrigerado extends ProdFrio {
 	//	Attributes
 	private String cod_org_supervision;
 	private float temperatura_mantenimiento;
-
 	
 	//	Constructors
-	public ProdRefrigerado(Date fecha_caducidad, String num_lote, String cod_org_supervision, Date fecha_envasado,
-			float temperatura_mantenimiento, String pais_origen) {
-		super(fecha_caducidad, num_lote, fecha_envasado, pais_origen);
+	public ProdRefrigerado(Date fecha_caducidad, String num_lote, String nombre, Date fecha_envasado,
+			String pais_origen, String cod_org_supervision, float temperatura_mantenimiento) {
+		super(fecha_caducidad, num_lote, nombre, fecha_envasado, pais_origen);
 		this.cod_org_supervision = cod_org_supervision;
 		this.temperatura_mantenimiento = temperatura_mantenimiento;
 	}

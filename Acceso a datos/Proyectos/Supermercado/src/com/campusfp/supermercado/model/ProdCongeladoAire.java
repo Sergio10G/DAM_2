@@ -9,14 +9,14 @@ public class ProdCongeladoAire extends ProdCongelado {
 	private float pcH2O;
 	
 	//	Constructors
-	public ProdCongeladoAire(Date fecha_caducidad, String num_lote, Date fecha_envasado,
-			float temperatura_mantenimiento, String pais_origen, float pcO2, float pcCO2, float pcH2O) {
-		super(fecha_caducidad, num_lote, fecha_envasado, temperatura_mantenimiento, pais_origen);
+	public ProdCongeladoAire(Date fecha_caducidad, String num_lote, String nombre, Date fecha_envasado,
+			String pais_origen, float temperatura_mantenimiento, float pcO2, float pcCO2, float pcH2O) {
+		super(fecha_caducidad, num_lote, nombre, fecha_envasado, pais_origen, temperatura_mantenimiento);
 		this.pcO2 = pcO2;
 		this.pcCO2 = pcCO2;
 		this.pcH2O = pcH2O;
 	}
-	
+
 	//	Methods
 	@Override
 	public String toString() {

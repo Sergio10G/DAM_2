@@ -7,8 +7,8 @@ public class ProdFresco extends ProdFrio {
 
 	
 	//	Constructors
-	public ProdFresco(Date fecha_caducidad, String num_lote, Date fecha_envasado, String pais_origen) {
-		super(fecha_caducidad, num_lote, fecha_envasado, pais_origen);
+	public ProdFresco(Date fecha_caducidad, String num_lote, String nombre, Date fecha_envasado, String pais_origen) {
+		super(fecha_caducidad, num_lote, nombre, fecha_envasado, pais_origen);
 	}
 	
 	//	Methods
@@ -17,8 +17,7 @@ public class ProdFresco extends ProdFrio {
 		return "nombre=" + this.getNombre() + ", ProdFresco [num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad() +
 		", fecha_envasado=" + this.getFecha_envasado() +  ", pais_origen=" + this.getPais_origen() + "]";
 	}
-
-
+	
 	//	Getters & Setters
 	
 }

@@ -1,18 +1,15 @@
 package com.campusfp.supermercado.main;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
-
-import com.campusfp.supermercado.model.ProdCongelado;
-import com.campusfp.supermercado.model.ProdFrio;
+import com.campusfp.supermercado.model.*;
 
 public class Main {
 	public static void main(String[] args) {
-		ProdCongelado pc = new ProdCongelado(new Date(), "111111111111111111", new Date(), 12.05, "España");
-		ProdCongelado pc1 = new ProdCongelado(new Date(), "22222222222222222", new Date(), 13.05, "Noruega");
-		ProdCongelado pc2 = new ProdCongelado(new Date(), "33333333333333333", new Date(), 21.05, "España");
-		ProdCongelado pc3 = new ProdCongelado(new Date(), "4444444444444444", new Date(), 2.05, "Irlanda");
+		ProdCongelado pc = new ProdCongelado(new Date(), "33333333333333333", "Croquetas", new Date(), "España", 2.53f);
+		ProdCongelado pc1 = new ProdCongelado(new Date(), "22222222222222222", "Sardinas", new Date(), "España", 13.27f);
+		ProdCongelado pc2 = new ProdCongelado(new Date(), "111111111111111111", "Angulas", new Date(), "España", 12.05f);
+		ProdCongelado pc3 = new ProdCongelado(new Date(), "4444444444444444", "Espinacas", new Date(), "España", 8.95f);
 
 		ArrayList<ProdFrio> all = new ArrayList<ProdFrio>();
 		ArrayList<ProdFrio> selected = new ArrayList<ProdFrio>();
@@ -22,7 +19,7 @@ public class Main {
 		all.add(pc2);
 		all.add(pc3);
 
-		selected = provieneDe(all, "España");
+		selected = provieneDeOrdenado(all, "España");
 
 		System.out.println("Provenientes de España:");
 		for (ProdFrio pr : selected)
@@ -31,6 +28,7 @@ public class Main {
 
 	public static ArrayList<ProdFrio> provieneDe(ArrayList<ProdFrio> prs, String pais) {
 		ArrayList<ProdFrio> select = new ArrayList<ProdFrio>();
+		
 		for (ProdFrio pf : prs) {
 			if (pf.getPais_origen().equals(pais))
 				select.add(pf);
@@ -39,12 +37,15 @@ public class Main {
 	}
 
 	public static ArrayList<ProdFrio> provieneDeOrdenado(ArrayList<ProdFrio> prs, String pais) {
-		ArrayList<ProdFrio> select = new ArrayList<ProdFrio>();
+		NombreComparator pc = new NombreComparator();
+		ArrayList<ProdFrio> select = new ArrayList<ProdFrio>(1);
+
 		for (ProdFrio pf : prs) {
 			if (pf.getPais_origen().equals(pais))
 				select.add(pf);
 		}
-		return select.sort();	//	TODO
+		select.sort(pc);
+		return select;
 	}
 
 }

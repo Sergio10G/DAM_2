@@ -8,13 +8,13 @@ public class ProdCongeladoNitro extends ProdCongelado {
 	private float segundos_exp;
 	
 	//	Constructors
-	public ProdCongeladoNitro(Date fecha_caducidad, String num_lote, Date fecha_envasado,
-			float temperatura_mantenimiento, String pais_origen, String metodo_congelacion, float segundos_exp) {
-		super(fecha_caducidad, num_lote, fecha_envasado, temperatura_mantenimiento, pais_origen);
+	public ProdCongeladoNitro(Date fecha_caducidad, String num_lote, String nombre, Date fecha_envasado,
+			String pais_origen, float temperatura_mantenimiento, String metodo_congelacion, float segundos_exp) {
+		super(fecha_caducidad, num_lote, nombre, fecha_envasado, pais_origen, temperatura_mantenimiento);
 		this.metodo_congelacion = metodo_congelacion;
 		this.segundos_exp = segundos_exp;
 	}
-	
+
 	//	Methods
 	public String toString() {
 		return "ProdCongeladoNitro [nombre=" + this.getNombre() + ", num_lote=" + this.getNum_lote() + ", fecha_caducidad=" + this.getFecha_caducidad()
