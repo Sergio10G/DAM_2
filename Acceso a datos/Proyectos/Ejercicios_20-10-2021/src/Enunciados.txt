@@ -1,0 +1,47 @@
+1) Crear una clase con su metodo main y un metodo que permita sumar dos numeros.
+
+2) Crear una clase que permita sumar los multiplos de  3 que hay desde el 0 a un numero n que entra como parametro.
+
+3) Calcular el factorial de un numero n
+
+4) Crear un metodo que permita invertir un string
+
+4.1) Crear un metodo que elija al azar un nombre de un array de nombres.
+4.2) Crear un metodo que genere numeros al azar entre dos numeros dados.
+
+5) Crear un metodo que permita encontrar el maximo de un array de enteros.
+
+6) Dado un array de numeros calcular su promedio
+
+7) Investigar como resolver con lambdas y streams el metodo anterior
+
+8) Crear un metodo que convierta una Lista de Strings a mayusculas.
+
+9) Encontrar el segundo elemento mas grande de un Array.
+
+10) Rehacer el ejercicio 9) usando Streams
+
+Ejercicio integrador
+--------------------
+
+Crear una aplicacion que permita hacer diferentes operaciones sobre una Coleccion de objetos Empleado.
+
+Los atributos de cada empleado son Nombre, Email, Categoria, List<Jornales>
+
+Donde Jornales es un objeto que tiene Horas trabajas y Dias trabajados
+
+Se deben crear metodos para:
+
+1) Generar una Lista de objetos Empleado reusando los metodos desarrollados en 4.1 y 4.2
+
+2) Crear un metodo que procese la lista de Empleados calculando la nomina: HorasxDiasx15.50 (*) euros la hora y a la cual se le debe aplicar un porcentaje de incremento representado por la categoria si tiene categoria 10 se le debe incrementar un 10% al valor (*)
+
+3) El resultado del proceso debe ser una Lista de objetos Liquidacion (Empleado, monto a cobrar)
+
+4) Procesar el resultado de 3 para ordenar la lista en orden decreciente.
+
+5) Encontrar los datos del empleado que esta en tercer lugar en orden de liquidacion.
+
+6) Crear un metodo para listar alfabeticamente y por categoria a los empleados
+
+Utilizar lambdas y Streams
