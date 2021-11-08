@@ -239,9 +239,6 @@ class Cliente:
         self.cat = cat
         self.compras = compras
 
-    def __str__(self):
-        return self.nombre + ", " + self.tlf + ", " + self.email + ", " + self.cat + ", " + self.desplegar_lista()
-
     def desplegar_lista(self):
         ls = "["
         x = 0
@@ -252,6 +249,9 @@ class Cliente:
                 ls += ","
         ls += "]"
         return ls
+
+    def __str__(self):
+        return self.nombre + ", " + self.tlf + ", " + self.email + ", " + self.cat + ", " + self.desplegar_lista()
 
     def toCSV(self):
         return self.nombre + ";" + self.tlf + ";" + self.email + ";" + self.cat + ";" + self.desplegar_lista() + "\n"
@@ -266,9 +266,6 @@ class Compra:
         self.total = total
         self.productos = productos
 
-    def __str__(self):
-        return "[" + self.fecha + ", " + str(self.total) + ", " + self.desplegar_lista() + "]"
-
     def desplegar_lista(self):
             ls = "["
             x = 0
@@ -279,6 +276,9 @@ class Compra:
                     ls += ","
             ls += "]"
             return ls
+
+    def __str__(self):
+        return "[" + self.fecha + ", " + str(self.total) + ", " + self.desplegar_lista() + "]"
 
     def toCSV(self):
         return self.fecha + ";" + str(self.total) + ";" + self.desplegar_lista() + "\n"
