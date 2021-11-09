@@ -65,8 +65,8 @@ class Menu:
     def __init__(self, fm: FileManager):
         self.fm = fm
         self.opciones = {
-            "main": ["Agregar cliente", "Realizar venta", "Cargar clientes", "Cargar ventas", "Cargar archivo externo"\
-                , "Listar clientes"],
+            "main": ["Agregar cliente", "Realizar venta", "Cargar clientes", "Cargar ventas",\
+                "Exportar a archivo externo", "Listar clientes"],
             "listar_clientes": ["Todos", "Nuevos", "Calificados", "Propuestos", "Ganados"]
         }
         self.nivel_actual = "main"
@@ -243,8 +243,8 @@ class Menu:
                     print(com.toString())
                 self.confirm_msg("")
             elif selec == 5:
-                #Cargar archivo externo
-                self.confirm_msg("Cargar archivo externo")
+                # Exportar a archivo externo
+                self.confirm_msg("Exportar a archivo externo")
             elif selec == 6:
                 # Listar clientes
                 self.nivel_actual = "listar_clientes"
