@@ -223,7 +223,7 @@ class Menu:
                     cliente = self.cliente_from_csv(csv_field)
                     clientes.append(cliente)
                 self.clientes = clientes
-                print("Clientes cargados")
+                print("Clientes cargados:\n")
                 print(file_content.get("header").replace(";", ", ").replace("\n", ""))
                 for cliente in self.clientes:
                     print(cliente.toString())
@@ -237,6 +237,7 @@ class Menu:
                     csv_field = csv_field.split("\n")[0]
                     compras.append(self.compra_from_csv(csv_field))
                 self.compras = compras
+                print("Compras cargadas:\n")
                 print(file_content.get("header").replace(";", ", ").replace("\n", ""))
                 for com in compras:
                     print(com.toString())
@@ -353,7 +354,7 @@ class Cliente:
             for compra in self.compras:
                 if compra.getTotal() > 1000:
                     self.cat = "Ganado"
-                    break;
+                    break
             
 
     def toString(self):
