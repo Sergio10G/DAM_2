@@ -13,10 +13,12 @@ class FileManager:
             f_name = self.ventas
         else:
             return 0
+
         if not os.path.isfile(f_name):
             file = open(f_name, "w")
         else:
-            return
+            return 0
+        
         if f == "c":
             file.write("nombre;tlf;email;cat;compras\n")
         elif f == "v":
@@ -58,8 +60,8 @@ class Menu:
     def __init__(self, fm: FileManager):
         self.fm = fm
         self.opciones = {
-            "main": ["agregar cliente", "realizar venta", "cargar clientes", "cargar ventas", "listar clientes"],
-            "listar_clientes": ["todos", "nuevos", "calificados", "propuestos", "ganados"]
+            "main": ["Agregar cliente", "Realizar venta", "Cargar clientes", "Cargar ventas", "Listar clientes"],
+            "listar_clientes": ["Todos", "Nuevos", "Calificados", "Propuestos", "Ganados"]
         }
         self.nivel_actual = "main"
         self.activo = True
@@ -79,11 +81,11 @@ class Menu:
         print("|                                 |")
 
     def clear(self):
-        os.system("cls")
+        os.system("cls || clear")
 
     def confirm_msg(self, msg):
         print(msg)
-        input("Presiona cualquier tecla para continuar.")
+        input("Presiona intro para continuar.")
 
     def embeber_opcion(self, op, texto):
         prep = "| " + str(op) + ". " + texto
@@ -93,11 +95,16 @@ class Menu:
         print(prep)
 
     def crear_compra(self):
-        print("Va a crear una nueva compra")
         fecha = input("Introduce la fecha: ")
-        total = float(input("Introduce el total: "))
+        while True:
+            try:
+                total = float(input("Introduce el total: "))
+                break
+            except:
+                print("ERROR: El total debe ser un número.")
         productos = []
         t = 1
+        print("A continuación se introducirán los productos comprados.")
         while True:
             pr = input("Introduce el producto nº " + str(t) + ": ")
             productos.append(pr)
@@ -106,28 +113,66 @@ class Menu:
                 break
             t += 1
         return Compra(fecha, total, productos)
+    
+    def compra_from_csv(self, str):
+        # 17/10/2021;1024.0;[razor]
+        no_new_line = str[0:len(str) - 1]
+        fields = no_new_line.split(";")
+        fecha = fields[0]
+        total = float(fields[1])
+        productos = fields[2].split(",")
+        compra = Compra(fecha, total, productos)
+        return compra
 
 
     def crear_cliente(self):
-        print("Va a crear un nuevo cliente")
         nombre = input("Introduce el nombre completo: ")
         tlf = input("Introduce el número de teléfono: ")
         email = input("Introduce el email: ")
-        cat = input("Introduce la categoría: ")
+        # cat = input("Introduce la categoría: ")
         compras = []
         t = 1
+        print("A continuación se introducirán las compras del cliente.")
         while True:
-            print("Introduce la compra nº " + str(t))
+            print("[Compra nº " + str(t) + "]")
             comp = self.crear_compra()
             compras.append(comp)
-            sel = input("Compra nº " + str(t) + " introducida. Quieres introducir otra compra? s/n")
+            sel = input("Compra nº " + str(t) + " introducida. ¿Quieres introducir otra compra? s/n: ")
             if sel != "s":
                 break
             t += 1
+        #return Cliente(nombre, tlf, email, cat, compras)
+        return Cliente(nombre, tlf, email, "", compras)
+    
+    def cliente_from_csv(self, str):
+        # Sergio;654789123;sergio@gmail.com;Calificado;[[17/10/2021, 1024.01, [razor, blade]]]
+        no_new_line = str[0:len(str) - 1]
+        fields = no_new_line.split(";")
+        nombre = fields[0]
+        tlf = fields[1]
+        email = fields[2]
+        cat = fields[3]
+        compras_csv = fields[4][2:len(fields[4]) - 2].split("],[")
+        print(fields[4])
+        compras = []
+        for c_csv in compras_csv:
+            parts = c_csv.replace("[", "")
+            parts = c_csv.replace("]", "")
+            parts = c_csv.split(",")
+            c_fecha = parts[0]
+            c_total = parts[1]
+            c_pedidos = []
+            for x in range(2, len(parts)):
+                c_pedidos.append(parts[x])
+            compras.append(Compra(c_fecha, c_total, c_pedidos))
+            
         return Cliente(nombre, tlf, email, cat, compras)
 
     def option_check(self, selec):
-        sel = int(selec)
+        try:
+            sel = int(selec)
+        except:
+            return -1
         if sel == 0:
             return 0
         if self.nivel_actual == "main":
@@ -138,7 +183,7 @@ class Menu:
                 return 1
         return -1
 
-    def select_option(self, selec):
+    def select_menu_option(self, selec):
         self.clear()
         if selec == 0:
             return 0
@@ -161,27 +206,30 @@ class Menu:
                     self.confirm_msg("Ha ocurrido algún error al realizar la compra.")
             elif selec == 3:
                 # Cargar clientes
+                self.fm.create_file("c")
                 clientes = []
                 file_content = self.fm.read_file("c")
-                for line in file_content.get("data"):
-                    line = line.split("\n")[0]
-                    parts = line.split(";")
-                    clientes.append(Cliente(parts[0], parts[1], parts[2], parts[3], parts[4]))
-                print("Clientes cargados:")
-                for cli in clientes:
-                    print(cli)
+                for csv_field in file_content.get("data"):
+                    cliente = self.cliente_from_csv(csv_field)
+                    clientes.append(cliente)
+                self.clientes = clientes
+                for cliente in self.clientes:
+                    print(cliente.toString())
                 self.confirm_msg("")
             elif selec == 4:
                 # Cargar compras
+                self.fm.create_file("v")
                 compras = []
                 file_content = self.fm.read_file("v")
                 for line in file_content.get("data"):
                     line = line.split("\n")[0]
                     parts = line.split(";")
-                    compras.append(Compra(parts[0], parts[1], parts[2]))
+                    c = Compra(parts[0], parts[1], parts[2])
+                    compras.append(c)
+                self.compras = compras
                 print("Compras cargadas:")
                 for com in compras:
-                    print(com)
+                    print(com.toString())
                 self.confirm_msg("")
             elif selec == 5:
                 # Listar clientes
@@ -206,6 +254,7 @@ class Menu:
 
     def start(self):
         while self.activo:
+            self.clear()
             self.pintar_cabecera()
             op = 1
             for opcion in self.opciones.get(self.nivel_actual):
@@ -216,7 +265,7 @@ class Menu:
             self.pintar_separador()
             selec = input("Introduce una opción: ")
             res = self.option_check(selec)
-            self.clear()
+            # clear
             if res == 0:
                 if self.nivel_actual == "main":
                     self.activo = False
@@ -227,7 +276,7 @@ class Menu:
                 print("ERROR: La opción introducida es incorrecta.")
                 continue
             else:
-                self.select_option(int(selec))
+                self.select_menu_option(int(selec))
 
 
 
@@ -238,19 +287,32 @@ class Cliente:
         self.email = email
         self.cat = cat
         self.compras = compras
+        self.categorizar()
 
     def desplegar_lista(self):
         ls = "["
-        x = 0
         for compra in self.compras:
-            ls += compra.__str__()
-            x += 1
-            if x < len(self.compras):
-                ls += ","
+            ls += compra.toString()
         ls += "]"
         return ls
 
-    def __str__(self):
+    def categorizar(self):
+        if len(self.compras) == 0:
+            self.cat = "Nuevo"
+        elif len(self.compras) == 1:
+            self.cat = "Calificado"
+        elif len(self.compras) > 1:
+            self.cat = "Propuesta"
+            for compra in self.compras:
+                print(compra)
+                '''
+                if compra.getTotal() > 1000:
+                    self.cat = "Ganado"
+                    break;
+                '''
+            
+
+    def toString(self):
         return self.nombre + ", " + self.tlf + ", " + self.email + ", " + self.cat + ", " + self.desplegar_lista()
 
     def toCSV(self):
@@ -266,18 +328,18 @@ class Compra:
         self.total = total
         self.productos = productos
 
-    def desplegar_lista(self):
-            ls = "["
-            x = 0
-            for prod in self.productos:
-                ls += prod
-                x += 1
-                if x < len(self.productos):
-                    ls += ","
-            ls += "]"
-            return ls
+    def getTotal(self):
+        return self.total
 
-    def __str__(self):
+    def desplegar_lista(self):
+            str = "".join(self.productos)
+            str = str[1:len(str)]
+
+            ls = "["
+            ls += ",".join(self.productos)
+            return ls + "]";
+
+    def toString(self):
         return "[" + self.fecha + ", " + str(self.total) + ", " + self.desplegar_lista() + "]"
 
     def toCSV(self):
