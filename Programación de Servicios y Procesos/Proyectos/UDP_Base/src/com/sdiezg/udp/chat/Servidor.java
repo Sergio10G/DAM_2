@@ -44,7 +44,7 @@ public class Servidor extends Thread{
 			DatagramPacket p1 = new DatagramPacket(buf, buf.length);
 			socket.receive(p1);
 			String m = new String(p1.getData());
-			if (!m.trim().equals("1"))
+			if (!m.trim().equals("1")) 
 				return;
 			
 			Servidor receptor = new Servidor(socket);

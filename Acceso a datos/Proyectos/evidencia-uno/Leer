@@ -1,0 +1,6 @@
+Implementar la clase AbstractInMemoryPeliService. Eso implicara que la clase debera implementar
+ciertos metodos declarados en su interface. Implementalos utilizando la API Streams de Java 8 y expresiones lambda si correspondiera.
+Crea tambien una clase con un metodo main para probar los metodos que hayas implementado.
+
+Atencion: Al terminar, exporta el proyecto y ponle tu nombre y apellido al fichero zipeado (Ej: juan_perez.zip). 
+Luego subelo a la tarea denominada Evidencia 1ra.
