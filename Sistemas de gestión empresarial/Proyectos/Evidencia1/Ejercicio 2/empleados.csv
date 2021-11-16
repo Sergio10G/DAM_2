@@ -1,0 +1,3 @@
+id_emp;nombre;apellido;horas;salario_base;salario_final
+1;Sergio;Diez;130.0;1000.0;1100.0
+2;Miguel;de la Rosa;130.0;2000.0;2000.0
