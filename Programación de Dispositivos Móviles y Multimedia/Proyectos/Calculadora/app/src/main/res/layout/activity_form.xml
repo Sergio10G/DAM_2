@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Form">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="312dp"
+        android:layout_height="74dp"
+        android:text="Formulario"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="386dp"
+        android:layout_height="259dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_verify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <TableRow>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="410dp"
+                android:layout_height="161dp"
+                android:layout_column="1"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="331dp">
+
+                <EditText
+                    android:id="@+id/txt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Nombre"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/txt_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Apellidos"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp" />
+
+                <EditText
+                    android:id="@+id/txt_tlf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Teléfono"
+                    android:inputType="phone"
+                    android:minHeight="48dp" />
+            </LinearLayout>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/infoCaptcha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:text="Captcha. Introduce el siguiente número a continuación."
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="518dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/num_captcha"
+                android:layout_width="217dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                tools:layout_editor_absoluteX="-27dp"
+                tools:layout_editor_absoluteY="569dp" />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/txt_captcha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:ems="10"
+                android:inputType="number"
+                tools:layout_editor_absoluteX="210dp"
+                tools:layout_editor_absoluteY="547dp" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btn_verify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="272dp"
+        android:text="Enviar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
