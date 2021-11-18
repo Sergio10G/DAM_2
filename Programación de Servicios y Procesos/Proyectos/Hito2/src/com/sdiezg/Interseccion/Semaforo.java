@@ -9,11 +9,6 @@ public class Semaforo extends Thread {
     private boolean activo;
 
     // CONSTRUCTORS
-    public Semaforo(List<Salida> salidas) {
-        this.salidas = salidas;
-        this.activo = true;
-    }
-
     public Semaforo(Salida salidaConcurrida, Salida salidaNormal1, Salida salidaNormal2, Salida salidaNormal3) {
         this.salidas = new ArrayList<Salida>();
         this.salidas.add(salidaConcurrida);

@@ -30,8 +30,12 @@ public class Main {
 
         System.out.println("Comenzando la simulación...");
 
+        // Bucle de espera del programa, dará 150 vueltas tardando 1 segundo por vuelta, y después se cerrarán los hilos y se
+        // mostrará la información
         for (int i = 0; i < 150; i++) {
-            System.out.println("Tiempo restante: " + (150 - i) + "s");
+            int segRestantes = 150 - i;
+            // Esta linea de abajo pinta el tiempo restante en el formato mm:ss, por eso es tan larga
+            System.out.println("Tiempo restante: " + "0" + (segRestantes / 60) + ":" + (segRestantes % 60 < 10 ? "0" : "") + (segRestantes % 60));
             
             Thread.sleep(1000);
         }

@@ -8,14 +8,12 @@ public class Salida implements Runnable {
     private List<Coche> via;
     private int maxMillis;
     private int segundosSemaforo;
-    private boolean activo;
     
     // CONSTRUCTORS
     public Salida(List<Coche> via, int segundosSemaforo) {
         this.via = via;
         this.maxMillis = 200;
         this.segundosSemaforo = segundosSemaforo;
-        this.activo = true;
     }
     
     // METHDOS
@@ -23,7 +21,7 @@ public class Salida implements Runnable {
     public void run() {
         long t0 = (new Date()).getTime();
         //System.out.println("SEMAFORO VERDE__________________________");
-        while (activo) {
+        while ((new Date()).getTime() - t0 < segundosSemaforo * 1000) {
             try {
                 if (via.size() > 0) {
                     synchronized (via) {
@@ -36,9 +34,6 @@ public class Salida implements Runnable {
             catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
-            long t1 = (new Date()).getTime();
-            if (t1 - t0 >= segundosSemaforo * 1000)
-                break;
         }
     }
 
@@ -46,7 +41,7 @@ public class Salida implements Runnable {
         via.add(new Coche());
     }
 
-    public void cocheSale() {
+    public synchronized void cocheSale() {
         if (via.size() > 0)
             via.remove(via.size() - 1);
     }
@@ -66,14 +61,6 @@ public class Salida implements Runnable {
     
     public void setMaxMillis(int maxMillis) {
         this.maxMillis = maxMillis;
-    }
-    
-    public boolean isActivo() {
-        return activo;
-    }
-    
-    public void setActivo(boolean activo) {
-        this.activo = activo;
     }
 
     public int getSegundosSemaforo() {
