@@ -21,9 +21,7 @@ public class Entrada extends Thread{
         while (activo) {
             synchronized (via) {
                 cocheEntra();
-                via.notifyAll();
             }
-            //System.out.println("Entra un coche.");
             try {
                 sleep((int) (Math.random() * maxMillis));
             } catch (InterruptedException e) {
@@ -32,13 +30,8 @@ public class Entrada extends Thread{
         }
     }
 
-    public void cocheEntra() {
+    public synchronized void cocheEntra() {
         via.add(new Coche());
-    }
-
-    public void cocheSale() {
-        if (via.size() > 0)
-            via.remove(via.size() - 1);
     }
     
     // GETTERS AND SETTERS

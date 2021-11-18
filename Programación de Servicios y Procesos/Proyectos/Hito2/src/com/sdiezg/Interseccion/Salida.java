@@ -20,14 +20,12 @@ public class Salida implements Runnable {
     @Override
     public void run() {
         long t0 = (new Date()).getTime();
-        //System.out.println("SEMAFORO VERDE__________________________");
         while ((new Date()).getTime() - t0 < segundosSemaforo * 1000) {
             try {
                 if (via.size() > 0) {
                     synchronized (via) {
                         cocheSale();
                     }
-                    //System.out.println("Sale un coche.");
                     Thread.sleep(maxMillis);
                 }
             }
@@ -35,10 +33,6 @@ public class Salida implements Runnable {
                 ie.printStackTrace();
             }
         }
-    }
-
-    public void cocheEntra() {
-        via.add(new Coche());
     }
 
     public synchronized void cocheSale() {

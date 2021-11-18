@@ -3,29 +3,33 @@ package com.sdiezg.Interseccion;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Semaforo extends Thread {
+public class Interseccion extends Thread {
     // ATTRIBUTES
     private List<Salida> salidas;
+    private List<Entrada> entradas;
     private boolean activo;
 
     // CONSTRUCTORS
-    public Semaforo(Salida salidaConcurrida, Salida salidaNormal1, Salida salidaNormal2, Salida salidaNormal3) {
+    public Interseccion() {
         this.salidas = new ArrayList<Salida>();
-        this.salidas.add(salidaConcurrida);
-        this.salidas.add(salidaNormal1);
-        this.salidas.add(salidaNormal2);
-        this.salidas.add(salidaNormal3);
+        this.entradas = new ArrayList<Entrada>();
         this.activo = true;
     }
     
     // METHDOS
     @Override
     public void run() {
+        // Los coches empiezan a llegar por las entradas
+        for (Entrada entrada : entradas) {
+            entrada.start();
+        }
         while (activo) {
+            // Se alternan las salidas de los coches de una en una
             for (Salida salida : salidas) {
                 Thread hiloSalida = new Thread(salida);
                 hiloSalida.start();
                 try {
+                    // Esperamos hasta que acabe el tiempo de semáforo de la salida
                     hiloSalida.join();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -34,9 +38,21 @@ public class Semaforo extends Thread {
                     break;
             }         
         }
+        // Se ha acabado la simulación, se cierran las entradas.
+        for (Entrada entrada : entradas) {
+            entrada.setActivo(false);
+        }
     }
     
     // GETTERS AND SETTERS
+    public void addEntrada(Entrada entrada) {
+        this.entradas.add(entrada);
+    }
+
+    public void addSalida(Salida salida) {
+        this.salidas.add(salida);
+    }
+
     public boolean isActivo() {
         return activo;
     }
