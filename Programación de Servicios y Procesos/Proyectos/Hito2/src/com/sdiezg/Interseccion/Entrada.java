@@ -1,3 +1,5 @@
+package com.sdiezg.Interseccion;
+
 import java.util.List;
 
 public class Entrada extends Thread{
@@ -21,7 +23,7 @@ public class Entrada extends Thread{
                 cocheEntra();
                 via.notifyAll();
             }
-            System.out.println("Entra un coche.");
+            //System.out.println("Entra un coche.");
             try {
                 sleep((int) (Math.random() * maxMillis));
             } catch (InterruptedException e) {

@@ -1,12 +1,14 @@
-import java.util.List;
+package com.sdiezg.Interseccion;
 
-public class Salida extends Thread {
+import java.util.List;
+import java.util.Date;
+
+public class Salida implements Runnable {
     // ATTRIBUTES
     private List<Coche> via;
     private int maxMillis;
     private int segundosSemaforo;
     private boolean activo;
-    private boolean semaforoVerde;
     
     // CONSTRUCTORS
     public Salida(List<Coche> via, int segundosSemaforo) {
@@ -14,33 +16,29 @@ public class Salida extends Thread {
         this.maxMillis = 200;
         this.segundosSemaforo = segundosSemaforo;
         this.activo = true;
-        this.semaforoVerde = false;
     }
     
     // METHDOS
     @Override
     public void run() {
+        long t0 = (new Date()).getTime();
+        //System.out.println("SEMAFORO VERDE__________________________");
         while (activo) {
-            if (semaforoVerde) {
-                System.out.println("SEMAFORO VERDE__________________________");
-                try {
-                    if (via.size() > 0) {
-                        synchronized (via) {
-                            cocheSale();
-                        }
-                        System.out.println("Sale un coche.");
-                        Thread.sleep(maxMillis);
+            try {
+                if (via.size() > 0) {
+                    synchronized (via) {
+                        cocheSale();
                     }
-                    else {
-                        synchronized (via) {
-                            via.wait();
-                        }
-                    }
-                }
-                catch (InterruptedException ie) {
-                    ie.printStackTrace();
+                    //System.out.println("Sale un coche.");
+                    Thread.sleep(maxMillis);
                 }
             }
+            catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+            long t1 = (new Date()).getTime();
+            if (t1 - t0 >= segundosSemaforo * 1000)
+                break;
         }
     }
 
@@ -53,14 +51,6 @@ public class Salida extends Thread {
             via.remove(via.size() - 1);
     }
 
-    public void semaforoRojo() {
-        this.semaforoVerde = false;
-    }
-
-    public void semaforoVerde() {
-        this.semaforoVerde = true;
-    }
-    
     // GETTERS AND SETTERS
     public List<Coche> getVia() {
         return via;

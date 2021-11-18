@@ -1,7 +1,9 @@
+package com.sdiezg.Interseccion;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class App {
+public class Main {
     public static void main(String[] args) throws Exception {
         List<Coche> viaConcurrida = new ArrayList<Coche>();
         List<Coche> viaNormal1 = new ArrayList<Coche>();
@@ -18,14 +20,7 @@ public class App {
         Salida salidaNormal2 = new Salida(viaNormal2, 5);
         Salida salidaNormal3 = new Salida(viaNormal3, 5);
 
-        List<Salida> salidas = new ArrayList<Salida>();
-
-        salidas.add(salidaConcurrida);
-        salidas.add(salidaNormal1);
-        salidas.add(salidaNormal2);
-        salidas.add(salidaNormal3);
-
-        Semaforo semaforo = new Semaforo(salidas);
+        Semaforo semaforo = new Semaforo(salidaConcurrida, salidaNormal1, salidaNormal2, salidaNormal3);
 
         entradaConcurrida.start();
         entradaNormal1.start();
@@ -33,8 +28,14 @@ public class App {
         entradaNormal3.start();
         semaforo.start();
 
-        Thread.sleep(10000);
-        
+        System.out.println("Comenzando la simulación...");
+
+        for (int i = 0; i < 150; i++) {
+            System.out.println("Tiempo restante: " + (150 - i) + "s");
+            
+            Thread.sleep(1000);
+        }
+
         entradaConcurrida.setActivo(false);
         entradaNormal1.setActivo(false);
         entradaNormal2.setActivo(false);
