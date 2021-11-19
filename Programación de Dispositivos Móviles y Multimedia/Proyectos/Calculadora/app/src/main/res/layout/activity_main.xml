@@ -10,7 +10,6 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Menu"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,30 +20,42 @@
         android:id="@+id/btn_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="84dp"
         android:text="Formulario"
-        app:layout_constraintEnd_toEndOf="@+id/btn_calc"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toStartOf="@+id/btn_calc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_calc" />
 
     <Button
         android:id="@+id/btn_dados"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="84dp"
         android:text="Dados"
-        app:layout_constraintEnd_toEndOf="@+id/btn_form"
-        app:layout_constraintStart_toStartOf="@+id/btn_form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_form" />
 
     <Button
         android:id="@+id/btn_calc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="100dp"
         android:text="Calculadora"
-        app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btn_listas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Listas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_dados"
+        app:layout_constraintVertical_bias="0.484" />
 </androidx.constraintlayout.widget.ConstraintLayout>

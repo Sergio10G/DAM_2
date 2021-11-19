@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Interseccion extends Thread {
     // ATTRIBUTES
-    private List<Salida> salidas;
     private List<Entrada> entradas;
+    private List<Salida> salidas;
     private boolean activo;
 
     // CONSTRUCTORS
     public Interseccion() {
-        this.salidas = new ArrayList<Salida>();
         this.entradas = new ArrayList<Entrada>();
+        this.salidas = new ArrayList<Salida>();
         this.activo = true;
     }
     
@@ -36,7 +36,7 @@ public class Interseccion extends Thread {
                 }
                 if (!activo)
                     break;
-            }         
+            }
         }
         // Se ha acabado la simulación, se cierran las entradas.
         for (Entrada entrada : entradas) {

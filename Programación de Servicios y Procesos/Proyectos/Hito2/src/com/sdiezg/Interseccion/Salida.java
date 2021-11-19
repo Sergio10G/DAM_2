@@ -19,7 +19,9 @@ public class Salida implements Runnable {
     // METHDOS
     @Override
     public void run() {
+		// Se registra el tiempo de inicio en t0
         long t0 = (new Date()).getTime();
+		// Salen coches mientras que hayan pasado menos segundos que los especificados en segundosSemaforo
         while ((new Date()).getTime() - t0 < segundosSemaforo * 1000) {
             try {
                 if (via.size() > 0) {

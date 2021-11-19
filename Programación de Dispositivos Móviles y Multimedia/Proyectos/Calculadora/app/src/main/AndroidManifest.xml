@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculadora">
         <activity
+            android:name=".Listas"
+            android:exported="false" />
+        <activity
             android:name=".TextoDados"
             android:exported="true" />
         <activity

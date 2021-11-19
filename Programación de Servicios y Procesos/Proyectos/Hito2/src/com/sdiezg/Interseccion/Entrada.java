@@ -18,6 +18,7 @@ public class Entrada extends Thread{
     // METHDOS
     @Override
     public void run() {
+		// Mientras que no se le haya dado la señal de apagarse (activo = false), los coches siguen entrando.
         while (activo) {
             synchronized (via) {
                 cocheEntra();

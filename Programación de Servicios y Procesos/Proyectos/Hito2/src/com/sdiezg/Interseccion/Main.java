@@ -14,20 +14,23 @@ public class Main {
         List<Coche> viaNormal2 = new ArrayList<Coche>();
         List<Coche> viaNormal3 = new ArrayList<Coche>();
 
+		// Creamos la interseccion, que será el hilo que controle todos los demás hilos, así como el "semáforo".
         Interseccion interseccion = new Interseccion();
 
+		// Añadimos los hilos de entrada de coches a la intersección
         interseccion.addEntrada(new Entrada(viaConcurrida, 100));
         interseccion.addEntrada(new Entrada(viaNormal1, 500));
         interseccion.addEntrada(new Entrada(viaNormal2, 500));
         interseccion.addEntrada(new Entrada(viaNormal3, 500));
 
+		// Añadimos los hilos de salida de coches a la intersección
         interseccion.addSalida(new Salida(viaConcurrida, 10));
         interseccion.addSalida(new Salida(viaNormal1, 5));
         interseccion.addSalida(new Salida(viaNormal2, 5));
         interseccion.addSalida(new Salida(viaNormal3, 5));
 
+		// Comienza la ejecución del programa
         interseccion.start();
-
         System.out.println("Comenzando la simulación...");
 
         // Bucle de espera del programa, dará 150 vueltas tardando 1 segundo por vuelta, y después se cerrarán los hilos y se
@@ -39,6 +42,7 @@ public class Main {
             Thread.sleep(1000);
         }
 
+		// Enviamos la señal de apagado a la intersección, que a su vez apagará el resto de hilos.
         interseccion.setActivo(false);
 
         System.out.println("--- Datos al final de la ejecución ---");
