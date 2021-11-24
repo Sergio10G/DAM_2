@@ -1,4 +1,4 @@
-package com.sdiezg.Interseccion;
+package com.sdiezg.interseccion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,5 +60,5 @@ public class Interseccion extends Thread {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+
 }

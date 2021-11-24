@@ -1,4 +1,4 @@
-package com.sdiezg.Interseccion;
+package com.sdiezg.interseccion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +40,9 @@ public class Main {
             // Esta linea de abajo pinta el tiempo restante en el formato mm:ss, por eso es tan larga
             System.out.println("Tiempo restante: " + "0" + (segsRestantes / 60) + ":" + (segsRestantes % 60 < 10 ? "0" : "") + (segsRestantes % 60));
             Thread.sleep(1000);
+			// Limpiar la consola
+			System.out.print("\033[H\033[2J");  
+    		System.out.flush();  
         }
 
 		// Enviamos la señal de apagado a la intersección, que a su vez apagará el resto de hilos.

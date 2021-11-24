@@ -1,4 +1,4 @@
-package com.sdiezg.Interseccion;
+package com.sdiezg.interseccion;
 
 import java.util.List;
 import java.util.Date;
