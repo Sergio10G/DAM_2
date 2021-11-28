@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "222142582269",
+    "firebase_url": "https://tapgame-67136-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tapgame-67136",
+    "storage_bucket": "tapgame-67136.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222142582269:android:0f86b2f677b17f1a231d94",
+        "android_client_info": {
+          "package_name": "com.example.tapgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222142582269-bojm55s69il8bjujh63jbar2umjao9u0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5IwAUzdI_sA357brm-3YxY1vhcb2xHQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222142582269-bojm55s69il8bjujh63jbar2umjao9u0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
