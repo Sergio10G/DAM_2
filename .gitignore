@@ -6,4 +6,6 @@
 *.jiff
 *.class
 *.exe
+*.doc
+*.docx
 repos/
