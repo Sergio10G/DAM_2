@@ -1,4 +1,4 @@
-package com.sdiezg.Interseccion;
+package com.sdiezg.interseccion;
 
 public class Coche {
 	
