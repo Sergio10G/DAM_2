@@ -8,6 +8,7 @@
     tools:context=".Game">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -65,5 +66,22 @@
             android:textColor="#673AB7"
             android:textSize="18sp" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/game_btnSave"
+        android:layout_width="99dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="282dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="191dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="💾"
+        android:textColor="#000000"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
