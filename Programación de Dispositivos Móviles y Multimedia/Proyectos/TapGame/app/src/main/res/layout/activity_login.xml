@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/login_linearLayout"
         android:layout_width="366dp"
-        android:layout_height="172dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +24,7 @@
             android:fontFamily="sans-serif-smallcaps"
             android:hint="Username"
             android:inputType="textPersonName"
+            android:textAlignment="viewStart"
             android:textAllCaps="true"
             android:textSize="24sp"
             android:textStyle="bold" />

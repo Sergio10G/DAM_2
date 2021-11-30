@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Campus FP/AndroidStudioProjects/TapGame/app/src/main/res/layout/activity_game.xml" value="0.25" />
+        <entry key="..\:/Users/Campus FP/AndroidStudioProjects/TapGame/app/src/main/res/layout/activity_login.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/Campus FP/AndroidStudioProjects/TapGame/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Campus FP/AndroidStudioProjects/TapGame/app/src/main/res/layout/activity_menu.xml" value="0.35104166666666664" />
+        <entry key="..\:/Users/Campus FP/AndroidStudioProjects/TapGame/app/src/main/res/layout/fragment_ldb_entry.xml" value="0.35104166666666664" />
         <entry key="..\:/Users/sejob/AndroidStudioProjects/TapGame/app/src/main/res/drawable/empty_tall_divider.xml" value="0.3828125" />
         <entry key="..\:/Users/sejob/AndroidStudioProjects/TapGame/app/src/main/res/layout/activity_game.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/sejob/AndroidStudioProjects/TapGame/app/src/main/res/layout/activity_login.xml" value="0.33" />
