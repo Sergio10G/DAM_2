@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Mi Taco Online Shop</title>
+<link rel="stylesheet" th:href="@{/taco.css}" />
+</head>
+<body>
+       <div class="center">
+              <h1>Algo ha ido mal</h1>
+              <h2>Nuestros ingenieros están a la labor...</h2>
+              <h3 style="color:red;"><span th:text="${msg}"></span ></h3 >
+              <img th:src="@{/images/taco.jpg}" />
+             
+                                   <div class="element">
+                            <a th:href="@{/}" id="another">Ir al home</a>
+                     </div>
+       </div>
+</body>
+</html>
