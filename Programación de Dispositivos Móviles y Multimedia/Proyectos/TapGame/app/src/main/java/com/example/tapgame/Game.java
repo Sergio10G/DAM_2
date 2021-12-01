@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tapgame.model.Database;
 import com.example.tapgame.model.User;
@@ -26,7 +27,10 @@ public class Game extends AppCompatActivity {
         this.lblScore = findViewById(R.id.game_lblScore);
         this.btnSave = findViewById(R.id.game_btnSave);
 
-        this.btnSave.setOnClickListener(view -> Database.saveUser(loggedUser));
+        this.btnSave.setOnClickListener(view -> {
+            Database.saveUser(loggedUser);
+            Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+        });
 
         this.lblScore.setText(Long.toString(loggedUser.getScore()));
     }

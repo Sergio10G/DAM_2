@@ -27,5 +27,11 @@ public class Menu extends AppCompatActivity {
             i.putExtra("loggedUser", this.getIntent().getStringExtra("loggedUser"));
             startActivity(i);
         });
+
+        btnLdb.setOnClickListener(view -> {
+            Intent i = new Intent(this, Leaderboard.class);
+            i.putExtra("loggedUser", this.getIntent().getStringExtra("loggedUser"));
+            startActivity(i);
+        });
     }
 }
