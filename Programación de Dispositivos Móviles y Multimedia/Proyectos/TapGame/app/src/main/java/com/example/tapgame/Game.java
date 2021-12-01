@@ -7,9 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tapgame.model.Database;
+import com.example.tapgame.model.User;
+
 public class Game extends AppCompatActivity {
 
-    long score;
+    User loggedUser;
     TextView lblScore;
     Button btnSave;
 
@@ -18,15 +21,19 @@ public class Game extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        score = 0;
+        loggedUser = User.fromString(this.getIntent().getStringExtra("loggedUser"));
 
         this.lblScore = findViewById(R.id.game_lblScore);
         this.btnSave = findViewById(R.id.game_btnSave);
+
+        this.btnSave.setOnClickListener(view -> Database.saveUser(loggedUser));
+
+        this.lblScore.setText(Long.toString(loggedUser.getScore()));
     }
 
     public void screenTapped(View view) {
-        score++;
+        loggedUser.incrementScore();
 
-        lblScore.setText(Long.toString(score));
+        lblScore.setText(Long.toString(loggedUser.getScore()));
     }
 }

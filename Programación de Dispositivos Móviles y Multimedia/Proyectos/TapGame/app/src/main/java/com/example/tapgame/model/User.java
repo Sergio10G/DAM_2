@@ -12,13 +12,25 @@ public class User implements Comparable<User>{
 
     // CONSTRUCTORS
 
+    public User() {}
+
+    public User(String uname, String pass) {
+        this.id = -1;
+        this.uname = uname;
+        this.pass = pass;
+        this.score = 0;
+        this.multiplier = 1.0f;
+        this.clicker = 0.0f;
+        removeIllegalChars();
+    }
+
     public User(int id, String uname, String pass) {
         this.id = id;
         this.uname = uname;
         this.pass = pass;
         this.score = 0;
         this.multiplier = 1.0f;
-        this.clicker = 1.0f;
+        this.clicker = 0.0f;
         removeIllegalChars();
     }
 
@@ -42,12 +54,12 @@ public class User implements Comparable<User>{
         return    id + ","
                 + uname + ","
                 + pass + ","
-                + score
-                + multiplier
+                + score + ","
+                + multiplier + ","
                 + clicker;
     }
 
-    public static User userFromString(String userData) {
+    public static User fromString(String userData) {
         String[] userValues = userData.split(",");
 
         int id = Integer.parseInt(userValues[0]);
@@ -66,6 +78,10 @@ public class User implements Comparable<User>{
             return 1;
         else
             return -1;
+    }
+
+    public void incrementScore() {
+        this.score += this.multiplier;
     }
 
 
@@ -111,4 +127,11 @@ public class User implements Comparable<User>{
         this.multiplier = multiplier;
     }
 
+    public float getClicker() {
+        return clicker;
+    }
+
+    public void setClicker(float clicker) {
+        this.clicker = clicker;
+    }
 }

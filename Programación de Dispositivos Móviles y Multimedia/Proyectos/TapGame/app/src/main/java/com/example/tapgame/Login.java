@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,11 +28,11 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(view -> {
             String uname = txtUname.getText().toString();
             String pass = txtPass.getText().toString();
-            User loggedUser = Database.createAndSaveUser(uname, pass);
+            User loggedUser = Database.getOrCreateUser(uname, pass);
 
-            Intent game = new Intent(this, Game.class);
-            game.putExtra("loggedUser", loggedUser.toString());
-            startActivity(game);
+            Intent menu = new Intent(this, Menu.class);
+            menu.putExtra("loggedUser", loggedUser.toString());
+            startActivity(menu);
         });
     }
 
