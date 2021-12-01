@@ -23,21 +23,20 @@ public class Database {
 
     // METHODS
 
-    public static void connect() {
-        firebaseDatabase = FirebaseDatabase.getInstance("https://tapgame-67136-default-rtdb.europe-west1.firebasedatabase.app/");
-
+    public static List<User> getUsers() {
         DatabaseReference myRef = firebaseDatabase.getReference("Users");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                users = new ArrayList<User>();
+                List<User> extractedUsers = new ArrayList<User>();
                 Log.i(TAG, "Extracting data from db...");
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                     User u = child.getValue(User.class);
-                     users.add(u);
+                    User u = child.getValue(User.class);
+                    extractedUsers.add(u);
                 }
 
+                users = extractedUsers;
                 Log.i(TAG, "Users extracted: " + users.size());
             }
 
@@ -47,15 +46,23 @@ public class Database {
                 Log.e(TAG, "Failed to read db.");
             }
         });
+        return users;
+    }
+
+    public static void connect() {
+        firebaseDatabase = FirebaseDatabase.getInstance("https://tapgame-67136-default-rtdb.europe-west1.firebasedatabase.app/");
+        getUsers();
     }
 
     public static boolean userExists(User user) {
         if (firebaseDatabase == null || users == null)
             connect();
+
         for (User usr : users) {
             if(usr.getUname().equals(user.getUname())
-                    && user.getPass().equals(user.getPass()))
+                    && user.getPass().equals(user.getPass())) {
                 return true;
+            }
         }
         return false;
     }
@@ -81,12 +88,6 @@ public class Database {
         return user;
     }
 
-    public static List<User> getAllUsers() {
-        if (firebaseDatabase == null || users == null)
-            connect();
-        return users;
-    }
-
     public static int getLastId() {
         if (firebaseDatabase == null || users == null)
             connect();
@@ -106,10 +107,22 @@ public class Database {
     }
 
     public static User getUserByUname(String uname) {
-        if (firebaseDatabase == null || users == null)
+        if (firebaseDatabase == null)
             connect();
+        users = getUsers();
         for (User user : users) {
             if (user.getUname().equals(uname))
+                return user;
+        }
+        return null;
+    }
+
+    public static User getUserById(int id) {
+        if (firebaseDatabase == null)
+            connect();
+        users = getUsers();
+        for (User user : users) {
+            if (user.getId() == id)
                 return user;
         }
         return null;

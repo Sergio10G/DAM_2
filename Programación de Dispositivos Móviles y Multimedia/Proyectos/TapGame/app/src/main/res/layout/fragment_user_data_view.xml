@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="0 . 0 x s"
+            android:text="+ 0 . 0"
             android:textAllCaps="false"
             android:textColor="#673AB7"
             android:textSize="18sp" />

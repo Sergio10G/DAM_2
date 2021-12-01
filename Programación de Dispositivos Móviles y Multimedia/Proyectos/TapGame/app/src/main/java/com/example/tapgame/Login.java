@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
             User loggedUser = Database.getOrCreateUser(uname, pass);
 
             Intent menu = new Intent(this, Menu.class);
-            menu.putExtra("loggedUser", loggedUser.toString());
+            menu.putExtra("loggedId", loggedUser.getId());
             startActivity(menu);
         });
     }

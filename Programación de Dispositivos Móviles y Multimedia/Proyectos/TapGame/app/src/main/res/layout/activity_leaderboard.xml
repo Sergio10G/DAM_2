@@ -22,21 +22,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:layout_width="366dp"
-        android:layout_height="555dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginBottom="16dp"
+    <ListView
+        android:id="@+id/leaderboard_lstLeaderboard"
+        android:layout_width="352dp"
+        android:layout_height="547dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboard_banner">
+        app:layout_constraintTop_toBottomOf="@+id/leaderboard_banner" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
