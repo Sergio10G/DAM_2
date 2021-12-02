@@ -10,8 +10,8 @@
         android:id="@+id/main_banner3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="38dp"
         android:layout_marginBottom="64dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="TAP GAME"
@@ -23,9 +23,7 @@
         android:typeface="normal"
         app:layout_constraintBottom_toTopOf="@+id/login_linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_banner4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/main_banner4"
@@ -33,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginTop="107dp"
+        android:layout_marginBottom="1dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="sdiezg's"
         android:textAllCaps="false"
@@ -40,6 +39,7 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"
         android:typeface="normal"
+        app:layout_constraintBottom_toTopOf="@+id/main_banner3"
         app:layout_constraintEnd_toStartOf="@+id/main_banner3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

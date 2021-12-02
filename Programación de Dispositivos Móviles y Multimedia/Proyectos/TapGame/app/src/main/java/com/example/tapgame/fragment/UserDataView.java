@@ -1,5 +1,6 @@
 package com.example.tapgame.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,8 @@ public class UserDataView extends Fragment {
     private int score;
     private float multiplier;
     private float clicker;
+    private String color;
+    private int colorInt;
 
     TextView txtUname, txtScore, txtMultiplier, txtClicker;
 
@@ -24,13 +27,14 @@ public class UserDataView extends Fragment {
     }
 
     // Creates a new fragment instance with all the values initialized.
-    public static UserDataView newInstance(String uname, int score, float multiplier, float clicker) {
+    public static UserDataView newInstance(String uname, int score, float multiplier, float clicker, String color) {
         UserDataView fragment = new UserDataView();
         Bundle args = new Bundle();
         args.putString("uname", uname);
         args.putInt("score", score);
         args.putFloat("multiplier", multiplier);
         args.putFloat("clicker", clicker);
+        args.putString("color", color);
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,6 +49,9 @@ public class UserDataView extends Fragment {
             score = getArguments().getInt("score");
             multiplier = getArguments().getFloat("multiplier");
             clicker = getArguments().getFloat("clicker");
+            color = getArguments().getString("color");
+            colorInt = Color.parseColor("#" + color);
+            System.out.println("Received color:" + color + " - " + colorInt);
         }
 
 
@@ -62,12 +69,12 @@ public class UserDataView extends Fragment {
         txtClicker = baseView.findViewById(R.id.userdataview_lblClicker);
 
         txtUname.setText(uname);
-        txtScore.setText(Integer.toString(score) + "PTS");
+        txtUname.setTextColor(colorInt);
+        txtScore.setText(score + "PTS");
         txtMultiplier.setText("x " + String.format("%.2f", multiplier));
         txtClicker.setText("+ " + String.format("%.2f", clicker));
 
         return baseView;
     }
-
 
 }

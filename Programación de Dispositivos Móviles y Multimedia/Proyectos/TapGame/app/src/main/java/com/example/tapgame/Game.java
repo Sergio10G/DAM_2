@@ -3,6 +3,7 @@ package com.example.tapgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,14 +11,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tapgame.model.ClickerTask;
 import com.example.tapgame.model.Database;
 import com.example.tapgame.model.User;
+import com.example.tapgame.model.UserListener;
 
 public class Game extends AppCompatActivity {
     User loggedUser;
     TextView lblScore, lblMultiplier, lblClicker;
     Button btnSave, btnMultiplierUp, btnClickerUp;
-    ProgressBar pbarDecimals;
+    ProgressBar pbarDecimals, pbIdle;
     int multiplierCost, clickerCost;
 
     @SuppressLint("SetTextI18n")
@@ -38,6 +41,7 @@ public class Game extends AppCompatActivity {
         btnMultiplierUp = findViewById(R.id.game_btnMultiplierUp);
         btnClickerUp = findViewById(R.id.game_btnClickerUp);
         pbarDecimals = findViewById(R.id.game_pbarDecimals);
+        pbIdle = findViewById(R.id.game_pbIdle);
 
         // Add some event listeners to the buttons
         btnSave.setOnClickListener(view -> {
@@ -69,12 +73,29 @@ public class Game extends AppCompatActivity {
         this.lblClicker.setText(prepareClicker());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // This user listener is a wrapper for the user, that includes a listener so if the user's
+        // score changes, the method updateViews is called, which updates the UI.
+        UserListener ul = new UserListener(loggedUser);
+        ul.setListener(new UserListener.ChangeListener() {
+            @Override
+            public void onChange() {
+                updateViews();
+            }
+        });
+        // This is the autoclicker task, which runs in parallel.
+        AsyncTask task = new ClickerTask(pbIdle, ul)
+                .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
+
     // Return the 2 first decimals of a float number
     private int getTwoDecimals(float num) {
         if (num == 0)
             return 0;
         // This is kind of dirty, but it does it's job
-        num += 0.000001;
+        num += 0.000000001;
         String numStr = Float.toString(num);
         int upperBound = 3;
         if (numStr.indexOf(".") + 3 > numStr.length()) {
@@ -113,6 +134,7 @@ public class Game extends AppCompatActivity {
         btnMultiplierUp.setText(multiplierCost + "PTS");
         btnClickerUp.setText(clickerCost + "PTS");
         lblScore.setText(Integer.toString((int) loggedUser.getScore()));
+        updateDecimalProgressBar(getTwoDecimals(loggedUser.getScore()));
     }
 
     // Formats the multiplier value to show it on it's textView (adds spaces in between)
@@ -142,7 +164,6 @@ public class Game extends AppCompatActivity {
     public void screenTapped(View view) {
         loggedUser.incrementScore();
 
-        updateDecimalProgressBar(getTwoDecimals(loggedUser.getScore()));
         calculateMultiplierCost();
         calculateClickerCost();
         updateViews();

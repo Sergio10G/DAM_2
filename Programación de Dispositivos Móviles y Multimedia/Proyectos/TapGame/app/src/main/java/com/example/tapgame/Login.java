@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity {
             // Once the user is logged in, the game starts working and the user is taken to the
             // menu.
             Intent menu = new Intent(this, Menu.class);
+            // It passes the users's id, to identify which user has logged in.
             menu.putExtra("loggedId", loggedUser.getId());
             startActivity(menu);
         });

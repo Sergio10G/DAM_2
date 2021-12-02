@@ -8,6 +8,7 @@ public class User implements Comparable<User>{
     private float score;
     private float multiplier;
     private float clicker;
+    private String color;
 
     // CONSTRUCTORS
     public User() {}
@@ -19,9 +20,12 @@ public class User implements Comparable<User>{
         this.score = 0;
         this.multiplier = 1.0f;
         this.clicker = 1.0f;
+        this.color = "000000";
     }
 
     // METHODS
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -31,6 +35,7 @@ public class User implements Comparable<User>{
                 ", score=" + score +
                 ", multiplier=" + multiplier +
                 ", clicker=" + clicker +
+                ", color=" + color +
                 '}';
     }
 
@@ -108,5 +113,13 @@ public class User implements Comparable<User>{
 
     public void setClicker(float clicker) {
         this.clicker = clicker;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

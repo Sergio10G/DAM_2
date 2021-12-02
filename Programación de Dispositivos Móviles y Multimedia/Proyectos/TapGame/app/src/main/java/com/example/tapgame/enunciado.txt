@@ -1,0 +1,7 @@
+PROGRAMACIÓN DE DISPOSITIVOS MÓVILES Y MULTIMEDIA
+EVIDENCIA INDIVIDUAL FINAL
+
+- Añadir un campo más a los usuarios: color favorito.
+- Dentro de cualquier actividad, a través de cualquier elemento de view clickable, se pueda mostrar
+una nueva actividad que nos muestre cualquier elemento de view al que se le pueda cambiar el color
+mostrando el color favorito del usuario loggeado en este momento.

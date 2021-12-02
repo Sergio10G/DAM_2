@@ -73,10 +73,20 @@ public class Database {
             connect();
         User user = getUserByUname(uname);
         if (user == null) {
-            int id = getLastId() + 1;
-            user = new User(id, uname, pass);
-            saveUser(user);
+            user = createUser(uname, pass);
         }
+        else {
+            if (!user.getPass().equals(pass)) {
+                user = createUser(uname + "*", pass);
+            }
+        }
+        return user;
+    }
+
+    public static User createUser(String uname, String pass) {
+        int id = getLastId() + 1;
+        User user = new User(id, uname, pass);
+        saveUser(user);
         return user;
     }
 

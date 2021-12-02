@@ -15,7 +15,7 @@ import com.example.tapgame.model.User;
 
 public class Menu extends AppCompatActivity {
     User loggedUser;
-    Button btnPlay, btnLdb;
+    Button btnPlay, btnLdb, btnColor;
     FragmentContainerView fcv;
 
     @Override
@@ -30,9 +30,11 @@ public class Menu extends AppCompatActivity {
         // Initialize views
         btnPlay = findViewById(R.id.menu_btnPlay);
         btnLdb = findViewById(R.id.menu_btnLdb);
+        btnColor = findViewById(R.id.menu_btnColor);
         fcv = findViewById(R.id.menu_fcv);
 
         // Add button listeners.
+        // All send the loggedUser's id to know which user has logged in.
         // This one launches the game activity.
         btnPlay.setOnClickListener(view -> {
             Intent i = new Intent(this, Game.class);
@@ -43,6 +45,13 @@ public class Menu extends AppCompatActivity {
         // This one launches the leaderboard activity.
         btnLdb.setOnClickListener(view -> {
             Intent i = new Intent(this, Leaderboard.class);
+            i.putExtra("loggedId", loggedId);
+            startActivity(i);
+        });
+
+        // This one launches the color activity.
+        btnColor.setOnClickListener(view -> {
+            Intent i = new Intent(this, ColorPicker.class);
             i.putExtra("loggedId", loggedId);
             startActivity(i);
         });
@@ -61,7 +70,8 @@ public class Menu extends AppCompatActivity {
         fm.beginTransaction().replace(R.id.menu_fcv, UserDataView.newInstance(loggedUser.getUname(),
                 (int) loggedUser.getScore(),
                 loggedUser.getMultiplier(),
-                loggedUser.getClicker()), null)
+                loggedUser.getClicker(),
+                loggedUser.getColor()), null)
                 .addToBackStack(null)
                 .commit();
     }
