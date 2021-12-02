@@ -2,7 +2,6 @@ package com.example.tapgame.model;
 
 public class User implements Comparable<User>{
     // ATTRIBUTES
-
     private int id;
     private String uname;
     private String pass;
@@ -11,7 +10,6 @@ public class User implements Comparable<User>{
     private float clicker;
 
     // CONSTRUCTORS
-
     public User() {}
 
     public User(int id, String uname, String pass) {
@@ -24,7 +22,6 @@ public class User implements Comparable<User>{
     }
 
     // METHODS
-
     @Override
     public String toString() {
         return "User{" +
@@ -37,12 +34,13 @@ public class User implements Comparable<User>{
                 '}';
     }
 
+    // Compare a user to another one. It won't be possible to use it with streams because
+    // API level 22 btw
     @Override
     public int compareTo(User u) {
         if (this.getScore() > u.getScore())
             return 1;
-        else
-            return -1;
+        return -1;
     }
 
     // Increment user score. It is calculated like so: NextScore = score + (clicker * multiplier)
@@ -64,7 +62,6 @@ public class User implements Comparable<User>{
 
 
     // GETTERS AND SETTERS
-
     public int getId() {
         return id;
     }
