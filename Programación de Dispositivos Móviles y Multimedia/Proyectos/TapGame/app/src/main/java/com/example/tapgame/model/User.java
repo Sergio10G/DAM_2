@@ -21,45 +21,20 @@ public class User implements Comparable<User>{
         this.score = 0;
         this.multiplier = 1.0f;
         this.clicker = 1.0f;
-        removeIllegalChars();
-    }
-
-    public User(int id, String uname, String pass, float score, float multiplier, float clicker) {
-        this.id = id;
-        this.uname = uname;
-        this.pass = pass;
-        this.score = score;
-        this.multiplier = multiplier;
-        this.clicker = clicker;
     }
 
     // METHODS
-    private void removeIllegalChars() {
-        uname.replace(",", ".");
-        pass.replace(",", ".");
-    }
 
     @Override
     public String toString() {
-        return    id + ","
-                + uname + ","
-                + pass + ","
-                + score + ","
-                + multiplier + ","
-                + clicker;
-    }
-
-    public static User fromString(String userData) {
-        String[] userValues = userData.split(",");
-
-        int id = Integer.parseInt(userValues[0]);
-        String uname = userValues[1];
-        String pass = userValues[2];
-        float score = Float.parseFloat(userValues[3]);
-        float multiplier = Float.parseFloat(userValues[4]);
-        float clicker = Float.parseFloat(userValues[5]);
-
-        return new User(id, uname, pass, score, multiplier, clicker);
+        return "User{" +
+                "id=" + id +
+                ", uname='" + uname + '\'' +
+                ", pass='" + pass + '\'' +
+                ", score=" + score +
+                ", multiplier=" + multiplier +
+                ", clicker=" + clicker +
+                '}';
     }
 
     @Override
@@ -70,19 +45,21 @@ public class User implements Comparable<User>{
             return -1;
     }
 
+    // Increment user score. It is calculated like so: NextScore = score + (clicker * multiplier)
     public void incrementScore() {
         this.score += (this.clicker * this.multiplier);
     }
 
+    // Increments multiplier and deduces the cost from user score
     public void incrementMultiplier(int cost) {
         this.score -= cost;
         this.multiplier += 0.5;
     }
 
+    // Increments clicker and deduces the cost from user score
     public void incrementClicker(int cost) {
         this.score -= cost;
         this.clicker += 1.1;
-
     }
 
 

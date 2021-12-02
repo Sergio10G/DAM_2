@@ -23,6 +23,8 @@ public class Database {
 
     // METHODS
 
+    // This is the main database reading function. It will read all users to the list "users", and
+    // it will also return it.
     public static List<User> getUsers() {
         DatabaseReference myRef = firebaseDatabase.getReference("Users");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -49,24 +51,13 @@ public class Database {
         return users;
     }
 
+    // Get the firebase database instance
     public static void connect() {
         firebaseDatabase = FirebaseDatabase.getInstance("https://tapgame-67136-default-rtdb.europe-west1.firebasedatabase.app/");
         getUsers();
     }
 
-    public static boolean userExists(User user) {
-        if (firebaseDatabase == null || users == null)
-            connect();
-
-        for (User usr : users) {
-            if(usr.getUname().equals(user.getUname())
-                    && user.getPass().equals(user.getPass())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    // Save all data from an user on the db
     public static void saveUser(User user) {
         if (firebaseDatabase == null)
             connect();
@@ -76,6 +67,7 @@ public class Database {
         Log.i(TAG, "User data saved from (" + user.getId() + ") " + user.getUname());
     }
 
+    // Tries to find a user by name. If it does not exist, it creates a new one.
     public static User getOrCreateUser(String uname, String pass) {
         if (firebaseDatabase == null || users == null)
             connect();
@@ -88,6 +80,7 @@ public class Database {
         return user;
     }
 
+    // Gets the last id introduced in the db
     public static int getLastId() {
         if (firebaseDatabase == null || users == null)
             connect();
@@ -97,15 +90,7 @@ public class Database {
         return users.get(users.size() - 1).getId();
     }
 
-    public static void changeValueByKey(User user, String key, Object value) {
-        if (firebaseDatabase == null)
-            connect();
-        DatabaseReference myRef = firebaseDatabase.getReference("Users")
-                .child(Integer.toString(user.getId()))
-                .child(key);
-        myRef.setValue(value);
-    }
-
+    // Gets a user by their name
     public static User getUserByUname(String uname) {
         if (firebaseDatabase == null)
             connect();
@@ -117,6 +102,7 @@ public class Database {
         return null;
     }
 
+    // Gets a user by their id
     public static User getUserById(int id) {
         if (firebaseDatabase == null)
             connect();

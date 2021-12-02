@@ -23,6 +23,7 @@ public class UserDataView extends Fragment {
         // Required empty public constructor
     }
 
+    // Creates a new fragment instance with all the values initialized.
     public static UserDataView newInstance(String uname, int score, float multiplier, float clicker) {
         UserDataView fragment = new UserDataView();
         Bundle args = new Bundle();
@@ -34,6 +35,7 @@ public class UserDataView extends Fragment {
         return fragment;
     }
 
+    // Get the parameters and save them.
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +50,11 @@ public class UserDataView extends Fragment {
 
     }
 
+    // Assing the views to the variables created, and initialize them with the values passed
+    // as parameters.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View baseView = inflater.inflate(R.layout.fragment_user_data_view, container, false);
         txtUname = baseView.findViewById(R.id.userdataview_lblUname);
         txtScore = baseView.findViewById(R.id.userdataview_lblScore);

@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Main activity. All it does is load the database and launch the login activity.
+
         Database.connect();
         Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);

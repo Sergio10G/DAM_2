@@ -21,11 +21,10 @@ public class Leaderboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
 
-        int loggedId = this.getIntent().getIntExtra("loggedId", 0);
-        loggedUser = Database.getUserById(loggedId);
-
+        // Initialize the listView
         this.lstLeaderboard = findViewById(R.id.leaderboard_lstLeaderboard);
 
+        // Sort the users by myself because API 22 btw
         List<User> users = Database.getUsers();
         if (users.size() > 0) {
             List<User> usersSorted = new ArrayList<>();
@@ -40,7 +39,6 @@ public class Leaderboard extends AppCompatActivity {
                 usersSorted.add(lowestScoreUser);
                 users.remove(lowestScoreUser);
             }
-
             List<String> entries = new ArrayList<>();
             int pos = 1;
             for (User user : usersSorted) {
@@ -48,6 +46,9 @@ public class Leaderboard extends AppCompatActivity {
                 entries.add(entry);
                 pos++;
             }
+
+            // Introduce the sorted list into an adapter, which then goes into the listView
+            // to show the items.
             ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, entries);
             lstLeaderboard.setAdapter(adapter);
         }
