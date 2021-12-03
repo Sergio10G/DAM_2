@@ -4,8 +4,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-
-
 public class Server {
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
