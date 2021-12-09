@@ -24,8 +24,8 @@
 	<div class="container border shadow bg-white" id="main_container">
 		<div th:if="${loggedUser == null}" id="login_form" class="p-2">
 			<h1 class="text-center">Ningún usuario loggeado</h1>
-			<h3><a class="d-block text-center" th:href="@{login}">Iniciar sesión</a></h3>
-			<h3><a class="d-block text-center" th:href="@{register}">Registrarse</a></h3>
+			<a class="d-block text-center" th:href="@{login}">Iniciar sesión</a>
+			<a class="d-block text-center" th:href="@{register}">Registrarse</a>
 		</div>
 		<div th:unless="${loggedUser == null}" id="login_form" class="p-2">
 			<h1 class="text-center">Usuario conectado</h1>
