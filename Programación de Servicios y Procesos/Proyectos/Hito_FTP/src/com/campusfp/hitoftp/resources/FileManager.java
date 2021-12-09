@@ -38,7 +38,13 @@ public class FileManager {
     
     // GETTERS AND SETTERS
     public List<File> getFiles() {
+		this.scan();
         return this.files;
+    }
+
+	public List<String> getFileNames() {
+		this.scan();
+        return Arrays.asList(this.rootDir.list());
     }
 
     public File getFileByName(String fileName) {

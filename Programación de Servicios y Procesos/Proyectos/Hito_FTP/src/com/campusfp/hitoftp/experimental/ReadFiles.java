@@ -3,28 +3,21 @@ package com.campusfp.hitoftp.experimental;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.campusfp.hitoftp.resources.Menu;
 
 public class ReadFiles {
     static List<String> fileNames;
     static List<File> files;
     public static void main(String[] args) {
-        String rootPath = "./serverfiles";
+        List<String> options = new ArrayList<>();
 
-        File rootDir = new File(rootPath);
-        files = Arrays.asList(rootDir.listFiles());
-        fileNames = Arrays.asList(rootDir.list());
-
-        for (File file : files) {
-            PrintWriter pw;
-            try {
-                pw = new PrintWriter(file);
-                pw.write(file.getAbsolutePath());
-                pw.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+		options.add("opcion 1");
+		options.add("opcion 2");
+		options.add("opcion 3");
+		Menu.printFromList(options);
     }
 }
