@@ -1,6 +1,8 @@
 package com.campusfp.hitoftp.resources;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
@@ -17,12 +19,13 @@ public class FileManager {
         this.rootDir = new File(rootPath);
         scan();
     }
-    
+
     // METHDOS
     public void scan() {
         files = Arrays.asList(rootDir.listFiles());
     }
 
+	/*
     public byte[] fileToBytes(String fileName) throws IOException { 
         File file = getFileByName(fileName);
 
@@ -35,19 +38,37 @@ public class FileManager {
         scan();
         return file;
     }
+	*/
+
+	public boolean createFile(String fileName, List<byte[]> fileContent) {
+		File newFile = new File(rootDir.getAbsolutePath() + "\\" + fileName);
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
+			for (byte[] bs : fileContent) {
+				bw.append(bs.toString());
+			}
+			bw.flush();
+			bw.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
     
     // GETTERS AND SETTERS
     public List<File> getFiles() {
-		this.scan();
+		scan();
         return this.files;
     }
 
 	public List<String> getFileNames() {
-		this.scan();
+		scan();
         return Arrays.asList(this.rootDir.list());
     }
 
     public File getFileByName(String fileName) {
+		scan();
         for (File file : files) {
             if (file.getName().equals(fileName)) {
                 return file;

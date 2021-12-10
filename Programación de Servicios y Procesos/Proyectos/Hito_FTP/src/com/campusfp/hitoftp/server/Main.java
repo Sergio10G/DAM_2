@@ -19,9 +19,8 @@ public class Main {
             while (true) {
                 Socket socket = serverSocket.accept();
 
-                // ClientRoutine
-
-
+				ClientRoutine cr = new ClientRoutine(socket, fileManager);
+				cr.start();
             }
         } catch (IOException e) {
             e.printStackTrace();

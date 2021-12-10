@@ -114,6 +114,7 @@ class Menu:
                 self.empleados.append(emp)
                 self.update_salaries()
                 self.confirm_msg("Empleado introducido con éxito!")
+
             elif selec == 2:
                 # Mostrar empleados
                 print("Listado de empleados:\n")
@@ -131,6 +132,7 @@ class Menu:
                 print("Balance de gastos de la empresa:\n")
                 print(str(total) + "€")
                 self.confirm_msg("")
+				
             elif selec == 4:
                 # Exportar a csv
                 self.fm.create_file()

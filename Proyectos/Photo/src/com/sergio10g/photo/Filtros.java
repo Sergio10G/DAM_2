@@ -10,7 +10,7 @@ public class Filtros {
 
 	static BufferedImage image;
 	public static void main(String[] args) {
-		File ficheroImagen = new File("D:\\Users\\Campus FP\\Pictures\\mario.jpg");
+		File ficheroImagen = new File("D:\\Users\\Campus FP\\Pictures\\demigod.png");
 		//File ficheroImagen = new File("D:\\Users\\Campus FP\\Documents\\Sergio Díez García\\Proyectos\\Photo\\bosque_invert.jpg");
 		try {
 			image = ImageIO.read(ficheroImagen);

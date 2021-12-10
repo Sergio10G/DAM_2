@@ -4,11 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import com.campusfp.hitoftp.resources.FileManager;
 import com.campusfp.hitoftp.resources.Menu;
@@ -17,55 +12,63 @@ public class ClientRoutine extends Thread{
     // ATTRIBUTES
     private Socket socket;
     private FileManager fileManager;
+	private boolean activo;
     
     // CONSTRUCTORS
     public ClientRoutine(Socket socket, FileManager fileManager) {
         this.socket = socket;
         this.fileManager = fileManager;
+		this.activo = true;
     }
     
     // METHDOS
     @Override
     public void run() {
-		final List<String> mainMenu = Arrays.asList("Listar ficheros", "Descargar fichero", "Subir fichero");
-		List<String> downloadableFiles = new ArrayList<>();
-		List<String> uploadableFiles = new ArrayList<>();
-		Map<String, List<String>> menus = new HashMap<>();
-		menus.put("main", mainMenu);
-		menus.put("download", downloadableFiles);
-		menus.put("upload", uploadableFiles);
-		String currentLevel = "main";
+		String msgForClient = "main";
+		boolean waiting = false;
 		
 		try {
 			DataInputStream inStream = new DataInputStream(socket.getInputStream());
 			DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
 
-			if (!currentLevel.equals("waiting"))
-				outStream.writeUTF(Menu.listToText(menus.get(currentLevel)));
-
-			int userPick = inStream.readInt();
-			switch (currentLevel) {
-				case "main":
-						if(userPick == 2) {
-							downloadableFiles = fileManager.getFileNames();
-							currentLevel = "download";
-						}
-						else if (userPick == 3) {
-							currentLevel = "waiting";
-						}
-					break;
+			while (activo) {
+				if (!waiting)
+					outStream.writeUTF(msgForClient);
+				waiting = false;
+				msgForClient = "main";
+			
+				int clientPick = inStream.readInt();
 				
-				case "download":
+				switch (clientPick) {
+					/*
+						Codigos de comunicación con el cliente:
+						-1 - Terminar comunicación
+						0 - Poner el servidor en estado "waiting"
+						1 - Listar archivos del server
+						2 - Activar el envio de archivos en el server
+						3 - Activar la recepción de archivos en el server
+					*/
+					case 0:
+						waiting = true;
+						break;
 
-					break;
-				
-				case "upload":
+					case 1:
+						// Listar archivos del server
+						msgForClient = Menu.optionListToText("download", fileManager.getFileNames());
+						break;
+					
+					case 2:
+						
+						break;
 
-					break;
+					case 3:
+
+						break;
 				
-				case "waiting":
-					currentLevel = "main";
-					break;
+					default:
+						this.activo = false;
+						break;
+				}
 			}
         } catch (IOException e) {
             e.printStackTrace();

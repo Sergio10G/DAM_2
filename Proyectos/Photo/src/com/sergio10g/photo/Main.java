@@ -13,7 +13,7 @@ public class Main {
 	static BufferedImage image;
 	
 	public static void main(String[] args) {
-		File ficheroImagen = new File("D:\\Users\\Campus FP\\Pictures\\marioface.jpg");
+		File ficheroImagen = new File("D:\\Users\\Campus FP\\Pictures\\demigod.png");
 		try {
 			image = ImageIO.read(ficheroImagen);
 			int width = image.getWidth();
