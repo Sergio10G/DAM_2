@@ -20,7 +20,14 @@ public class Main {
 		PrintWriter pw;
 		htmlContent = new ArrayList<>();
 
-		System.out.println("Introduce una URL (dejar vacío para URL por defecto):");
+		// Limpiar la consola
+		System.out.print("\033[H\033[2J");  
+    	System.out.flush();  
+
+		Colors.printString(EColors.PURPLE, "> Sdiezg's ");
+		Colors.printlnString(EColors.BLUE, "Web Analyzer");
+		Colors.printlnString(EColors.CYAN, "Webs sugeridas: milk.com");
+		Colors.printlnString(EColors.YELLOW, "Introduce una URL (dejar vacío para URL por defecto):");
 		String urlInput = sc.nextLine();
 		if (urlInput.equals(""))
 			urlInput = "edition.cnn.com/EVENTS/1996/year.in.review/";
@@ -45,6 +52,8 @@ public class Main {
 			pw.println(peticion);
 			//System.out.println(peticion);
 
+			Colors.printlnString(EColors.YELLOW, "Intentando conectarse a " + url + " ...");
+
 			long t0 = (new Date()).getTime();
 			while (true) {
 				if (br.ready()) {
@@ -68,11 +77,11 @@ public class Main {
 			Colors.printString(EColors.YELLOW, "METADATOS:\t");
 			System.out.println(findTag("head"));
 			Colors.printString(EColors.YELLOW, "SCRIPTS:\t");
-			System.out.println(findAllTags("script"));
+			System.out.println(findAllInlineTags("script").size() > 0 ? findAllInlineTags("script") : "none");
 			Colors.printString(EColors.YELLOW, "LINKS:\t\t");
-			System.out.println(findAllTags("link"));
-			Colors.printString(EColors.YELLOW, "Nº DE DIVS:\t");
-			System.out.println(findAllTags("div").size());
+			System.out.println(findAllInlineTags("link").size() > 0 ? findAllInlineTags("link") : "none");
+			Colors.printString(EColors.YELLOW, "Nº DE PÁRRAFOS:\t");
+			System.out.println(findAllTags("p").size());
 
 			sc.close();
 			socket.close();
@@ -93,7 +102,7 @@ public class Main {
 				found = true;
 			}
 			if (found) {
-				out += line + " ";
+				out += line + "\n";
 			}
 			if (line.contains(tagClose) || line.contains(tagClose.toUpperCase()))
 				break;
@@ -115,11 +124,36 @@ public class Main {
 			}
 			if (found) {
 				out += line + " ";
+				if (line.contains(tagClose) || line.contains(tagClose.toUpperCase())) {
+					lines.add(removeTags(tagName, out));
+					out = "";
+					found = false;
+				}
 			}
-			if (line.contains(tagClose) || line.contains(tagClose.toUpperCase())) {
-				lines.add(removeTags(tagName, out));
-				out = "";
-				found = false;
+		}
+		return lines;
+	}
+
+	public static List<String> findAllInlineTags(String tagName) {
+		List<String> lines = new ArrayList<>();
+		String tag = "<" + tagName + ">";
+		String tagClose = "</" + tagName + ">";
+		String simpleClose = "/>";
+
+		String out = "";
+		boolean found = false;
+
+		for (String line : htmlContent) {
+			if (line.contains(tagName) || line.contains(tagName.toUpperCase()) || line.contains(tag) || line.contains(tag.toUpperCase())) {
+				found = true;
+			}
+			if (found) {
+				out += line + " ";
+				if (line.contains(tagClose) || line.contains(tagClose.toUpperCase()) || line.contains(simpleClose)) {
+					lines.add(removeTags(tagName, out));
+					out = "";
+					found = false;
+				}
 			}
 		}
 		return lines;
