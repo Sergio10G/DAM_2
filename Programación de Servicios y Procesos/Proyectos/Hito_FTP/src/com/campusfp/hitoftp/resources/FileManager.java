@@ -41,18 +41,25 @@ public class FileManager {
 	*/
 
 	public boolean createFile(String fileName, List<byte[]> fileContent) {
-		File newFile = new File(rootDir.getAbsolutePath() + "\\" + fileName);
-		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(newFile));
-			for (byte[] bs : fileContent) {
-				bw.append(bs.toString());
-			}
-			bw.flush();
-			bw.close();
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            File newFile = new File(rootDir.getAbsolutePath() + "\\" + fileName);
+            int totalLength = 0;
+            for (byte[] bs : fileContent) {
+                totalLength += bs.length;
+            }
+            byte[] allFileContent = new byte[totalLength];
+            int offset = 0;
+            for (byte[] bs : fileContent) {
+                for (int i = 0; i < bs.length; i++) {
+                    allFileContent[offset + i] = bs[i];
+                }
+                offset += bs.length;
+            };
+            Files.write(newFile.toPath(), allFileContent, StandardOpenOption.WRITE);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 		return false;
 	}
     

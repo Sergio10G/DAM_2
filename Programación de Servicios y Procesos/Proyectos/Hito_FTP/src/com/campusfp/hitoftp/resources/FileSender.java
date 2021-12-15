@@ -35,11 +35,12 @@ public class FileSender extends Thread {
 				outStream.writeUTF(file.getName());
 
 				boolean keepSending = true;
+				// TODO: Cambiar la movida esta al otro read
 				while (keepSending) {
 					char readChar = 0;
 					int readCharNum = 0;
 					String msg = "";
-					// TODO: Cambiar la movida esta al otro read
+					
 					while ((readChar = (char) br.read()) != -1 && readCharNum < BUF_SIZE) {
 						msg += readChar;
 						readCharNum++;

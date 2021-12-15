@@ -1,5 +1,6 @@
 package com.campusfp.hitoftp.resources;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -41,16 +42,21 @@ public class Menu {
 	}
 
 	public void optionListFromText(String text) {
+		List<String> optionList;
 		String[] textParts = text.split("/");
 		String category = textParts[0];
-		List<String> optionList = Arrays.asList(textParts[1].split(":"));
+		if (textParts.length > 1)
+			optionList = Arrays.asList(textParts[1].split(":"));
+		else
+			optionList = new ArrayList<>();
 		refreshOptionsList(category, optionList);
 	}
 
-	public void refreshOptionsList(String category, List<String> optionList) {
+	public String refreshOptionsList(String category, List<String> optionList) {
 		if (menuMap.containsKey(category))
 			menuMap.remove(category);
 		menuMap.put(category, optionList);
+		return optionListToText(category);
 	}
 
 	public void printMenu(String category) {
@@ -69,6 +75,22 @@ public class Menu {
 		printSeparator();
 	}
 
+	public void printMenuFromText(String text) {
+		optionListFromText(text);
+		printMenu(text.split("/")[0]);
+	}
+
+	public String optionListToText(String category) {
+		List<String> optionList = menuMap.get(category);
+		String out = category + "/";
+		for (int i = 0; i < optionList.size(); i++) {
+			out += optionList.get(i);
+			if (i != optionList.size() - 1)
+				out += ":";
+		}
+		return out;
+	}
+
 	public static String optionListToText(String category, List<String> optionList) {
 		String out = category + "/";
 		for (int i = 0; i < optionList.size(); i++) {
@@ -79,7 +101,6 @@ public class Menu {
 		return out;
 	}
 
-    
     // GETTERS AND SETTERS
     
     
