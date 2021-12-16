@@ -41,7 +41,7 @@ public class FileSender extends Thread {
 				String fileContent = "";
 				String line = "";
 				while ((line = br.readLine()) != null) {
-					fileContent += line;
+					fileContent += line + "\n";
 				}
 
 				boolean finished = false;
