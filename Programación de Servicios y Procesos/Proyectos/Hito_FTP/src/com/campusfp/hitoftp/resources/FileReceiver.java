@@ -49,26 +49,7 @@ public class FileReceiver extends Thread {
 					System.out.println("Ha habido algún error al crear el archivo.");
 				}
 
-				/*
-					while (inStream.readInt() == 1) {
-						byte[] buf = new byte[BUF_SIZE];
-						inStream.read(buf);
-						fileContent.add(buf);
-						System.out.println("Reading file content...");
-					}
-
-					if (fileManager.createFile(fileName, fileContent)) {
-						System.out.println("Fichero transmitido con éxito!");
-					}
-					else {
-						System.out.println("Ha habido algún error al crear el archivo.");
-					}
-				*/
-
 				System.out.println("Receiver finished");
-
-				//inStream.close();
-				//outStream.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

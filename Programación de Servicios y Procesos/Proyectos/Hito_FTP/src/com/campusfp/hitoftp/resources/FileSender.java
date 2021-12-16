@@ -63,33 +63,10 @@ public class FileSender extends Thread {
 						outStream.writeUTF(msg);
 					}
 				}
-				/*
-					byte[] fileContent = Files.readAllBytes(file.toPath());
-					int offsetMult = 0;
-					int sentChars = 0;
-
-					while (sentChars < fileContent.length) {
-						System.out.println("Sending file content");
-						byte[] packetContent = new byte[BUF_SIZE];
-						int passedChars = 0;
-						while (passedChars < BUF_SIZE) {
-							if (passedChars + (offsetMult * BUF_SIZE) >= fileContent.length){
-								break;
-							}
-							packetContent[passedChars] = fileContent[passedChars + (offsetMult * BUF_SIZE)];
-							passedChars++;
-						}
-						outStream.writeInt(1);
-						outStream.write(packetContent);
-						sentChars += passedChars;
-					}
-				*/
 				System.out.println("Sender finished");
 				outStream.writeInt(0);
 
 				br.close();
-				//inStream.close();
-				//outStream.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
