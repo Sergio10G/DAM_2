@@ -42,6 +42,7 @@ public class FileReceiver extends Thread {
 					String msg = inStream.readUTF();
 					fileContent.add(msg);
 					Colors.printlnString(EColors.BLUE, "Reading file content...");
+					//Colors.printlnString(EColors.BLUE, msg);
 				}
 
 				if (fileManager.createFile(fileName, fileContent)) {

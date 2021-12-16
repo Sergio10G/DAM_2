@@ -59,6 +59,7 @@ public class FileSender extends Thread {
 						msg += fileContent.charAt(passedChars + (off * BUF_SIZE));
 						passedChars++;
 					}
+					off++;
 					
 					if (!msg.equals("")) {
 						outStream.writeInt(1);
