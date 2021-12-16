@@ -5,10 +5,12 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import com.campusfp.hitoftp.resources.Colors;
 import com.campusfp.hitoftp.resources.FileManager;
 import com.campusfp.hitoftp.resources.FileReceiver;
 import com.campusfp.hitoftp.resources.FileSender;
 import com.campusfp.hitoftp.resources.Menu;
+import com.campusfp.hitoftp.resources.Colors.EColors;
 
 public class Main {
 	
@@ -21,13 +23,13 @@ public class Main {
 		String ip;
 		int port;
 
-		System.out.println("Bienvenido al servicio de transferencia de archivos FTP");
-		System.out.println("Introduce la ip del servidor (default 127.0.0.1):");
+		Colors.printlnString(EColors.PURPLE, "Bienvenido al servicio de transferencia de archivos FTP");
+		Colors.printlnString(EColors.YELLOW, "Introduce la ip del servidor (default 127.0.0.1):");
 		ip = sc.nextLine();
 		if (ip.equals(""))
 			ip = "127.0.0.1";
-		while (true) {
-			System.out.println("Introduce el puerto (default 5111):");
+			while (true) {
+			Colors.printlnString(EColors.YELLOW, "Introduce el puerto (default 5111):");
 			String portInput = sc.nextLine();
 			try {
 				if (portInput.equals(""))
@@ -38,7 +40,7 @@ public class Main {
 					throw new Exception();
 				}
 			} catch (Exception e) {
-				System.out.println("El puerto introducido es inválido. Rango válido [1024 - 65535]");
+				Colors.printlnString(EColors.RED, "El puerto introducido es inválido. Rango válido [1024 - 65535]");
 				continue;
 			}
 			break;
@@ -60,10 +62,10 @@ public class Main {
 
 			while (true) {
 				String serverMsg = inStream.readUTF();
-				System.out.println(serverMsg);
+				//System.out.println(serverMsg);
 
 				category = serverMsg.split("/")[0];
-				System.out.println(category);
+				//System.out.println(category);
 
 				if (category.equals("startDownload")) {
 					FileReceiver fr = new FileReceiver(socket, fileManager);
@@ -99,7 +101,7 @@ public class Main {
 								pickedFileIndex = pick - 1;
 						}
 					} catch (Exception e) {
-						System.out.println("La opción introducida es incorrecta.");
+						Colors.printlnString(EColors.RED, "La opción introducida es incorrecta.");
 						continue;
 					}
 					break;

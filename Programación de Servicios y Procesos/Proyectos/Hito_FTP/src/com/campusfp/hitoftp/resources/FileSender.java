@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.Socket;
 
+import com.campusfp.hitoftp.resources.Colors.EColors;
+
 public class FileSender extends Thread {
 	private final int BUF_SIZE = 16000;
 	
@@ -27,15 +29,15 @@ public class FileSender extends Thread {
 			DataInputStream inStream = new DataInputStream(socket.getInputStream());
 			DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
 	
-			System.out.println("Sender sending 1");
+			Colors.printString(EColors.BLUE, "Sender sending 1");
 			outStream.writeInt(1);
 			int response = inStream.readInt();
-			System.out.println("Sender received " + response);
+			Colors.printString(EColors.BLUE, "Sender received " + response);
 			if (response == 1) {
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				
 				outStream.writeUTF(file.getName());
-				System.out.println("Sender sending " + file.getName());
+				Colors.printString(EColors.BLUE, "Sender sending " + file.getName());
 
 				int off = 0;
 				String fileContent = "";
@@ -63,7 +65,7 @@ public class FileSender extends Thread {
 						outStream.writeUTF(msg);
 					}
 				}
-				System.out.println("Sender finished");
+				Colors.printString(EColors.BLUE, "Sender finished");
 				outStream.writeInt(0);
 
 				br.close();

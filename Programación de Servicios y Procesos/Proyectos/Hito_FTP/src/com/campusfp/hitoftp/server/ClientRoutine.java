@@ -5,10 +5,12 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.net.Socket;
 
+import com.campusfp.hitoftp.resources.Colors;
 import com.campusfp.hitoftp.resources.FileManager;
 import com.campusfp.hitoftp.resources.FileReceiver;
 import com.campusfp.hitoftp.resources.FileSender;
 import com.campusfp.hitoftp.resources.Menu;
+import com.campusfp.hitoftp.resources.Colors.EColors;
 
 public class ClientRoutine extends Thread{
     // ATTRIBUTES
@@ -117,7 +119,8 @@ public class ClientRoutine extends Thread{
     }
 
 	private void log(String msg) {
-		System.out.println("[" + clietnNum + "] " + msg);
+		System.out.print("[" + clietnNum + "] ");
+		Colors.printlnString(EColors.CYAN, msg);
 	}
     
     // GETTERS AND SETTERS
