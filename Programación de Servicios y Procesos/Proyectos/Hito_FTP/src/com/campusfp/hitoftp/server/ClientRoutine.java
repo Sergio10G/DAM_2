@@ -56,9 +56,8 @@ public class ClientRoutine extends Thread{
 						/*
 							Codigos de comunicación con el cliente:
 							0 - Terminar comunicación
-							1 - Listar archivos del server
-							2 - Activar el envio de archivos en el server
-							3 - Activar la recepción de archivos en el server
+							1 - Activar el envio de archivos en el server
+							2 - Activar la recepción de archivos en el server
 						*/
 						case 0:
 							this.activo = false;

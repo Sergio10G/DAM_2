@@ -29,15 +29,15 @@ public class FileSender extends Thread {
 			DataInputStream inStream = new DataInputStream(socket.getInputStream());
 			DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
 	
-			Colors.printString(EColors.BLUE, "Sender sending 1");
+			Colors.printlnString(EColors.BLUE, "Sender sending 1");
 			outStream.writeInt(1);
 			int response = inStream.readInt();
-			Colors.printString(EColors.BLUE, "Sender received " + response);
+			Colors.printlnString(EColors.BLUE, "Sender received " + response);
 			if (response == 1) {
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				
 				outStream.writeUTF(file.getName());
-				Colors.printString(EColors.BLUE, "Sender sending " + file.getName());
+				Colors.printlnString(EColors.BLUE, "Sender sending " + file.getName());
 
 				int off = 0;
 				String fileContent = "";
@@ -65,7 +65,7 @@ public class FileSender extends Thread {
 						outStream.writeUTF(msg);
 					}
 				}
-				Colors.printString(EColors.BLUE, "Sender finished");
+				Colors.printlnString(EColors.BLUE, "Sender finished");
 				outStream.writeInt(0);
 
 				br.close();

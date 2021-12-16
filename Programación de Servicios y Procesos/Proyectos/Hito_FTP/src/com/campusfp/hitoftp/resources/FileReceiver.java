@@ -31,27 +31,27 @@ public class FileReceiver extends Thread {
 			DataOutputStream outStream = new DataOutputStream(socket.getOutputStream());
 	
 			int serverMsg = inStream.readInt();
-			Colors.printString(EColors.BLUE, "Receiver received " + serverMsg);
+			Colors.printlnString(EColors.BLUE, "Receiver received " + serverMsg);
 			if (serverMsg == 1) {
-				Colors.printString(EColors.BLUE, "Receiver sending 1");
+				Colors.printlnString(EColors.BLUE, "Receiver sending 1");
 				outStream.writeInt(1);
 				String fileName = inStream.readUTF();
-				Colors.printString(EColors.BLUE, "Receiver received " + fileName);
+				Colors.printlnString(EColors.BLUE, "Receiver received " + fileName);
 
 				while (inStream.readInt() == 1) {
 					String msg = inStream.readUTF();
 					fileContent.add(msg);
-					Colors.printString(EColors.BLUE, "Reading file content...");
+					Colors.printlnString(EColors.BLUE, "Reading file content...");
 				}
 
 				if (fileManager.createFile(fileName, fileContent)) {
-					Colors.printString(EColors.GREEN, "Fichero transmitido con éxito!");
+					Colors.printlnString(EColors.GREEN, "Fichero transmitido con éxito!");
 				}
 				else {
-					Colors.printString(EColors.RED, "Ha habido algún error al crear el archivo.");
+					Colors.printlnString(EColors.RED, "Ha habido algún error al crear el archivo.");
 				}
 
-				Colors.printString(EColors.BLUE, "Receiver finished");
+				Colors.printlnString(EColors.BLUE, "Receiver finished");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
