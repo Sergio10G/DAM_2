@@ -2,10 +2,12 @@ package com.campusfp.hitoftp.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.File;
 import java.net.Socket;
 
 import com.campusfp.hitoftp.resources.FileManager;
+import com.campusfp.hitoftp.resources.FileReceiver;
+import com.campusfp.hitoftp.resources.FileSender;
 import com.campusfp.hitoftp.resources.Menu;
 
 public class ClientRoutine extends Thread{
@@ -61,38 +63,53 @@ public class ClientRoutine extends Thread{
 							break;
 	
 						case 1:
-							// Listar archivos del server
-							currentCategory = "list";
+							currentCategory = "listDownload";
 							menu.refreshOptionsList(currentCategory, fileManager.getFileNames());
 							break;
 						
 						case 2:
-							currentCategory = "listDownload";
-							menu.refreshOptionsList(currentCategory, fileManager.getFileNames());
-							break;
-						case 3:
 							currentCategory = "listUpload";
 							break;
-					
+
 						default:
 							currentCategory = "main";
 							break;
 					}
 					
 				}
-				else if(currentCategory.equals("listDownload")){
+				else {
 					if (clientPick == 0) {
 						currentCategory = "main";
 					}
-				}
-				else if(currentCategory.equals("listUpload")){
-					if (clientPick == 0) {
-						currentCategory = "main";
+					else {
+						if (currentCategory.equals("listDownload")) {
+							if (clientPick - 1 < fileManager.getFiles().size()) {
+								// Inicio de la descarga
+								outStream.writeUTF("startDownload");
+								File file = fileManager.getFiles().get(clientPick - 1);
+								FileSender fs = new FileSender(socket, file);
+								Thread.sleep(100);
+								fs.start();
+								fs.join();
+								currentCategory = "main";
+								continue;
+							}
+						}
+						else if(currentCategory.equals("listUpload")) {
+							// Inicio de la subida
+							outStream.writeUTF("startUpload");
+							FileReceiver fr = new FileReceiver(socket, fileManager);
+
+							fr.start();
+							fr.join();
+							currentCategory = "main";
+							continue;
+						}
 					}
 				}
 			}
 				
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

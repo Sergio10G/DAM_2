@@ -13,7 +13,8 @@ public class Menu {
 	// CONSTRUCTOR
 	public Menu() {
 		this.menuMap = new HashMap<>();
-		menuMap.put("main", Arrays.asList("Listar ficheros", "Descargar fichero", "Subir fichero"));
+		//menuMap.put("main", Arrays.asList("Listar ficheros", "Descargar fichero", "Subir fichero"));
+		menuMap.put("main", Arrays.asList("Descargar fichero", "Subir fichero"));
 	}
 
     // METHDOS
@@ -99,6 +100,11 @@ public class Menu {
 				out += ":";
 		}
 		return out;
+	}
+
+	public static void clearTerminal() {
+		System.out.print("\033[H\033[2J");
+    	System.out.flush();
 	}
 
     // GETTERS AND SETTERS

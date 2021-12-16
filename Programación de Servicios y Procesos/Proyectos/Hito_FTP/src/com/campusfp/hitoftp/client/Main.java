@@ -6,6 +6,8 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import com.campusfp.hitoftp.resources.FileManager;
+import com.campusfp.hitoftp.resources.FileReceiver;
+import com.campusfp.hitoftp.resources.FileSender;
 import com.campusfp.hitoftp.resources.Menu;
 
 public class Main {
@@ -36,7 +38,7 @@ public class Main {
 					throw new Exception();
 				}
 			} catch (Exception e) {
-				System.out.println("El puerto introducido es inválido.");
+				System.out.println("El puerto introducido es inválido. Rango válido [1024 - 65535]");
 				continue;
 			}
 			break;
@@ -54,24 +56,55 @@ public class Main {
 			Menu menu = new Menu();
 			String category = "main";
 			int pick = -1;
+			int pickedFileIndex = 0;
 
 			while (true) {
 				String serverMsg = inStream.readUTF();
 				System.out.println(serverMsg);
 
 				category = serverMsg.split("/")[0];
+				System.out.println(category);
 
-				if (category.equals("startDownload") || category.equals("startUpload")) {
-				
-					break;
+				if (category.equals("startDownload")) {
+					FileReceiver fr = new FileReceiver(socket, fileManager);
+					
+					fr.start();
+					fr.join();
+					continue;
+				}
+				else if (category.equals("startUpload")) {
+					FileSender fs = new FileSender(socket, fileManager.getFiles().get(pickedFileIndex));
+
+					Thread.sleep(100);
+					fs.start();
+					fs.join();
+					continue;
 				}
 				else if (category.equals("listUpload")) {
 					serverMsg = menu.refreshOptionsList(category, fileManager.getFileNames());
 				}
-
-				menu.printMenuFromText(serverMsg);
 				
-				pick = Integer.parseInt(sc.nextLine());
+				Menu.clearTerminal();
+				while (true) {
+					try {
+						menu.printMenuFromText(serverMsg);
+						pick = Integer.parseInt(sc.nextLine());
+						if (pick < 0) {
+							throw new Exception();
+						}
+						if (category.equals("listUpload")) {
+							if (pick - 1 >= fileManager.getFiles().size())
+								throw new Exception();
+							else
+								pickedFileIndex = pick - 1;
+						}
+					} catch (Exception e) {
+						System.out.println("La opción introducida es incorrecta.");
+						continue;
+					}
+					break;
+				}
+				
 				outStream.writeInt(pick);
 
 				if (category.equals("main") && pick == 0) {
