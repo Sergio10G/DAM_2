@@ -10,8 +10,13 @@ Planificación > Prototipado > Evaluación > Implementación > Montiorización
 HITO:
 
 1. Investigación y planificación
-	> Sinnaps
+	> Usar Sinnaps
+	> Mercado (No hay que hacerlo)
+	> Competencia (Analizar apps de empresas rivales [home, pantalla de producto, carrito, categorías, up to you])
 	> Público objetivo
-	> Analizar apps de empresas rivales
 
-2. 
+2. Prototipado
+	> Whimsical
+	
+3. Evaluación
+	> Encuestas que haría al público de mi app.
