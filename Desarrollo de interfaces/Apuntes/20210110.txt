@@ -1,8 +1,0 @@
-1. Interfaz
-2. Gestor de apps
-3. Middleware
-4. Kernel
-
-Ciclo de vida de las apps:
-
-Planificación > Prototipado > Evaluación > Implementación > Montiorización
