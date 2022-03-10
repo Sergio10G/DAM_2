@@ -5,6 +5,8 @@
 
 Ciclo de vida de las apps:
 
+		      ___________________
+		     \/			 |
 Planificación > Prototipado > Evaluación > Implementación > Montiorización
 
 HITO:
